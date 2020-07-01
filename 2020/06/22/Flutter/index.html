@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="LuHai的个人博客">
 <meta property="og:description" content="Flutter路由管理Route路由。指页面，在android里指一个Activity。导航管理维护一个路由栈。build()方法放在State中。 MaterialPageRoute继承自PageRoute类，PageRoute是抽象类，表示占有整个屏幕空间的一个模态路由页面，还定义了路由构建和切换时过渡动画的相关接口和属性。如果想自定义路由切换动画，可以自己继承PageRoute实现。 Nav">
 <meta property="article:published_time" content="2020-06-22T14:18:10.000Z">
-<meta property="article:modified_time" content="2020-06-24T05:35:34.396Z">
+<meta property="article:modified_time" content="2020-07-01T06:26:37.324Z">
 <meta property="article:author" content="LuHai">
 <meta property="article:tag" content="Flutter">
 <meta name="twitter:card" content="summary">
@@ -397,6 +397,13 @@
 <p>widgets可以用于布局和展示UI元素</p>
 <p>widgets组合构建复杂的widgets</p>
 <p>Container是一个widget，允许自定义其子widget。eg:padding，margin，边框，背景颜色</p>
+<h4 id="布局widget"><a href="#布局widget" class="headerlink" title="布局widget"></a>布局widget</h4><p>1.选择一个布局widget（根据想要对齐或限制可见widget的方式）</p>
+<p>2.创建一个或多个子可见widget</p>
+<p>3.将可见widget添加到布局widget：</p>
+<p>​    所有的布局widget都具有以下任一项：</p>
+<p>​        child属性</p>
+<p>​        children属性</p>
+<p>4.将布局widget添加到页面</p>
 
       
     </div>
@@ -436,6 +443,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/01/%E5%8F%AF%E6%BB%9A%E5%8A%A8%E7%BB%84%E4%BB%B6/" rel="prev" title="可滚动组件">
+                可滚动组件 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -512,7 +523,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flutter"><span class="nav-number">1.</span> <span class="nav-text">Flutter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#路由管理"><span class="nav-number">1.1.</span> <span class="nav-text">路由管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MaterialPageRoute"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">MaterialPageRoute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigator"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Navigator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由传值"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">路由传值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名路由"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">命名路由</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dart单线程模型"><span class="nav-number">1.2.</span> <span class="nav-text">Dart单线程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Widget简介"><span class="nav-number">1.3.</span> <span class="nav-text">Widget简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#StatelessWidget"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">StatelessWidget</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给Android开发者的Flutter指南"><span class="nav-number">1.4.</span> <span class="nav-text">给Android开发者的Flutter指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明式UI"><span class="nav-number">1.5.</span> <span class="nav-text">声明式UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.6.</span> <span class="nav-text">Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Material组件："><span class="nav-number">1.6.0.1.</span> <span class="nav-text">使用Material组件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理手势：点击，拖动和其他手势"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">处理手势：点击，拖动和其他手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据用户输入改变widget："><span class="nav-number">1.6.0.3.</span> <span class="nav-text">根据用户输入改变widget：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter中的布局"><span class="nav-number">1.7.</span> <span class="nav-text">Flutter中的布局</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flutter"><span class="nav-number">1.</span> <span class="nav-text">Flutter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#路由管理"><span class="nav-number">1.1.</span> <span class="nav-text">路由管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MaterialPageRoute"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">MaterialPageRoute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigator"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Navigator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由传值"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">路由传值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名路由"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">命名路由</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dart单线程模型"><span class="nav-number">1.2.</span> <span class="nav-text">Dart单线程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Widget简介"><span class="nav-number">1.3.</span> <span class="nav-text">Widget简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#StatelessWidget"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">StatelessWidget</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给Android开发者的Flutter指南"><span class="nav-number">1.4.</span> <span class="nav-text">给Android开发者的Flutter指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明式UI"><span class="nav-number">1.5.</span> <span class="nav-text">声明式UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.6.</span> <span class="nav-text">Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Material组件："><span class="nav-number">1.6.0.1.</span> <span class="nav-text">使用Material组件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理手势：点击，拖动和其他手势"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">处理手势：点击，拖动和其他手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据用户输入改变widget："><span class="nav-number">1.6.0.3.</span> <span class="nav-text">根据用户输入改变widget：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter中的布局"><span class="nav-number">1.7.</span> <span class="nav-text">Flutter中的布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局widget"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">布局widget</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
