@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="LuHai的个人博客">
 <meta property="og:description" content="可滚动组件Scrollable Widget，可滚动组件：ListView，GridView。ScrollController。可滚动组件直接或间接包含一个Scrollable组件。包含一些共同的属性。 1234567Scrollable(&amp;#123;  ...  this.axisDirecton &#x3D; AxisDirection.down,  this.controller,  this.phy">
 <meta property="article:published_time" content="2020-07-01T06:24:56.000Z">
-<meta property="article:modified_time" content="2020-07-01T06:26:30.831Z">
+<meta property="article:modified_time" content="2020-07-10T00:31:07.090Z">
 <meta property="article:author" content="LuHai">
 <meta property="article:tag" content="Flutter">
 <meta name="twitter:card" content="summary">
@@ -366,7 +366,21 @@
 
 <p>reverse 是否按照阅读方向相反的方向滑动。</p>
 <p>primary 是否使用默认的PrimaryScrollController</p>
+<p>不支持基于Sliver的延迟实例化，内容过多性能会降低，应使用ListView</p>
+<h3 id="ListView"><a href="#ListView" class="headerlink" title="ListView"></a>ListView</h3><p>最常用的可滚动组件，可以沿一个方向线性排布所有子组件，支持Sliver延迟构建。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ListView(&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 可滚动widget公共参数</span></span><br><span class="line">  Axis scrollDirection = Axis.vertical,</span><br><span class="line">  <span class="built_in">bool</span> reverse = flase,</span><br><span class="line">  ScrollController controller,</span><br><span class="line">  <span class="built_in">bool</span> primary,</span><br><span class="line">  ScrollPhysics physics,</span><br><span class="line">  EdgeInsetsGeometry padding,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ListView各个构造函数的共同参数</span></span><br><span class="line">  <span class="built_in">double</span> itemExtent,</span><br><span class="line">  <span class="built_in">bool</span> shrinkWrap = <span class="keyword">false</span>,</span><br><span class="line">  <span class="built_in">bool</span> addAutomaticKeepAlives = <span class="keyword">true</span>,</span><br><span class="line">  <span class="built_in">bool</span> addRepaintBoundaries = <span class="keyword">true</span>,</span><br><span class="line">  <span class="built_in">double</span> cacheExtent,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 子widget列表</span></span><br><span class="line">  <span class="built_in">List</span>&lt;Widget&gt; children = <span class="keyword">const</span> &lt;Widget&gt;[],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<p>itemExtent 强制children的长度为滚动方向上子组件的长度。减少计算</p>
+<p>shrinkWrap 是否根据子组件的总长度来设置ListView的长度。默认会占用尽可能多的空间。</p>
+<p>addAutomaticKeepAlives 是否将子组件包裹在AutomaticKeepAlive组件中。</p>
+<p>addRepaintBoundaries 是否将子组件包裹在RepaintBoundaries组件中。避免列表项重绘。</p>
+<h4 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h4><p>有一个children参数，接收widget列表。需要将所有children提前创建。相当于SingleChildScrollView+Column</p>
+<h4 id="ListView-builder"><a href="#ListView-builder" class="headerlink" title="ListView.builder"></a>ListView.builder</h4><p>适合列表项比较多或无限的情况</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ListView.builder(&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 列表项的构建器，返回一个widget。当列表滚动到具体的index位置时，会调用构建器</span></span><br><span class="line">  <span class="meta">@required</span> IndexedWidgetBuilder itemBuilder,</span><br><span class="line">  <span class="built_in">int</span> itemCount,		<span class="comment">// 列表项的数量，无限为null</span></span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="ListView-separated"><a href="#ListView-separated" class="headerlink" title="ListView.separated"></a>ListView.separated</h4><p>在生成的列表项之间添加一个分割组件，比build()多了一个separatorBuilder参数，是分割组件生成器。</p>
+<h4 id="ListView-custom"><a href="#ListView-custom" class="headerlink" title="ListView.custom"></a>ListView.custom</h4><p>自定义列表项生成模型，实现一个SliverChildDelegate生成列表项组件。</p>
+<h3 id="GridView"><a href="#GridView" class="headerlink" title="GridView"></a>GridView</h3>
       
     </div>
     
@@ -405,6 +419,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/06/%E5%AE%B9%E5%99%A8%E7%B1%BBwidget/" rel="prev" title="page">
+                page <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -481,7 +499,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -536,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可滚动组件"><span class="nav-number">1.</span> <span class="nav-text">可滚动组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scrollbar"><span class="nav-number">1.0.1.</span> <span class="nav-text">Scrollbar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CupertinoScrollbar"><span class="nav-number">1.0.2.</span> <span class="nav-text">CupertinoScrollbar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewPort"><span class="nav-number">1.0.3.</span> <span class="nav-text">ViewPort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Sliver的延迟构建"><span class="nav-number">1.0.4.</span> <span class="nav-text">基于Sliver的延迟构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SingleChildScrollView"><span class="nav-number">1.1.</span> <span class="nav-text">SingleChildScrollView</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可滚动组件"><span class="nav-number">1.</span> <span class="nav-text">可滚动组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scrollbar"><span class="nav-number">1.0.1.</span> <span class="nav-text">Scrollbar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CupertinoScrollbar"><span class="nav-number">1.0.2.</span> <span class="nav-text">CupertinoScrollbar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewPort"><span class="nav-number">1.0.3.</span> <span class="nav-text">ViewPort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Sliver的延迟构建"><span class="nav-number">1.0.4.</span> <span class="nav-text">基于Sliver的延迟构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SingleChildScrollView"><span class="nav-number">1.1.</span> <span class="nav-text">SingleChildScrollView</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ListView"><span class="nav-number">1.1.1.</span> <span class="nav-text">ListView</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#默认构造函数"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">默认构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ListView-builder"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">ListView.builder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ListView-separated"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">ListView.separated</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ListView-custom"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">ListView.custom</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GridView"><span class="nav-number">1.1.2.</span> <span class="nav-text">GridView</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

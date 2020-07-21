@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Flutter," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="容器类widget容器类widget与布局类widget都作用于其子widget。布局类一般需要接收一个widget数组（children）。容器类widget一般只需要接收一个子widget（child）。布局类widget是按照一定的排列方式来对其子widget进行排列，容器类只是包含子widget对其添加一些修饰，变换，限制。 填充Padding给子节点添加填充，类似于边距。 12345Pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="page">
+<meta property="og:url" content="http://lhai0704.github.io/2020/07/06/%E5%AE%B9%E5%99%A8%E7%B1%BBwidget/index.html">
+<meta property="og:site_name" content="LuHai的个人博客">
+<meta property="og:description" content="容器类widget容器类widget与布局类widget都作用于其子widget。布局类一般需要接收一个widget数组（children）。容器类widget一般只需要接收一个子widget（child）。布局类widget是按照一定的排列方式来对其子widget进行排列，容器类只是包含子widget对其添加一些修饰，变换，限制。 填充Padding给子节点添加填充，类似于边距。 12345Pa">
+<meta property="article:published_time" content="2020-07-06T09:27:35.000Z">
+<meta property="article:modified_time" content="2020-07-10T00:30:56.839Z">
+<meta property="article:author" content="LuHai">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lhai0704.github.io/2020/07/06/容器类widget/"/>
+
+
+
+
+
+  <title>page | LuHai的个人博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LuHai的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lhai0704.github.io/2020/07/06/%E5%AE%B9%E5%99%A8%E7%B1%BBwidget/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuHai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LuHai的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">page</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-06T17:27:35+08:00">
+                2020-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="容器类widget"><a href="#容器类widget" class="headerlink" title="容器类widget"></a>容器类widget</h1><p>容器类widget与布局类widget都作用于其子widget。布局类一般需要接收一个widget数组（children）。容器类widget一般只需要接收一个子widget（child）。布局类widget是按照一定的排列方式来对其子widget进行排列，容器类只是包含子widget对其添加一些修饰，变换，限制。</p>
+<h2 id="填充Padding"><a href="#填充Padding" class="headerlink" title="填充Padding"></a>填充Padding</h2><p>给子节点添加填充，类似于边距。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Padding(&#123;</span><br><span class="line">  ...</span><br><span class="line">  EdgeInsetsGeometry padding,</span><br><span class="line">  Widget child,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>EdgeInsetsGeometry的一个字类：EdgeInsets</p>
+<ul>
+<li>fromLTRB(double left, double top, double right, double bottom)</li>
+<li>all(double value)</li>
+<li>only({left, top, right, bottom})</li>
+<li>symmetric({vertical, horizontal})</li>
+</ul>
+<h2 id="尺寸限制类容器"><a href="#尺寸限制类容器" class="headerlink" title="尺寸限制类容器"></a>尺寸限制类容器</h2><p>限制容器大小，如：ConstrainedBox, SizedBox, UnconstrainedBox, AspectRatio等</p>
+<h3 id="ConstrainedBox"><a href="#ConstrainedBox" class="headerlink" title="ConstrainedBox"></a>ConstrainedBox</h3><p>对子组件添加额外的约束。BoxConstraints用于设置限制条件</p>
+<h3 id="SizedBox"><a href="#SizedBox" class="headerlink" title="SizedBox"></a>SizedBox</h3><p>给子元素指定固定的宽高</p>
+<h3 id="多重限制"><a href="#多重限制" class="headerlink" title="多重限制"></a>多重限制</h3><h3 id="UnconstrainedBox"><a href="#UnconstrainedBox" class="headerlink" title="UnconstrainedBox"></a>UnconstrainedBox</h3><p>可以用于去除多重限制</p>
+<h2 id="装饰容器DecoratedBox"><a href="#装饰容器DecoratedBox" class="headerlink" title="装饰容器DecoratedBox"></a>装饰容器DecoratedBox</h2><p>在其子组件绘制前或后绘制一些装饰（Decoration）如：背景，边框，渐变</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> DecoratedBox(&#123;</span><br><span class="line">  Decoration decoration,		<span class="comment">// 要绘制的装饰，一般用BoxDecoration</span></span><br><span class="line">  DecorationPosition position = DecorationPositon.background,		<span class="comment">// 前或后</span></span><br><span class="line">  Widget child</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="BoxDecoration"><a href="#BoxDecoration" class="headerlink" title="BoxDecoration"></a>BoxDecoration</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BoxDecoration(&#123;</span><br><span class="line">  Color color, <span class="comment">//颜色</span></span><br><span class="line">  DecorationImage image,<span class="comment">//图片</span></span><br><span class="line">  BoxBorder border, <span class="comment">//边框</span></span><br><span class="line">  BorderRadiusGeometry borderRadius, <span class="comment">//圆角</span></span><br><span class="line">  <span class="built_in">List</span>&lt;BoxShadow&gt; boxShadow, <span class="comment">//阴影,可以指定多个</span></span><br><span class="line">  Gradient gradient, <span class="comment">//渐变</span></span><br><span class="line">  BlendMode backgroundBlendMode, <span class="comment">//背景混合模式</span></span><br><span class="line">  BoxShape shape = BoxShape.rectangle, <span class="comment">//形状</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="变换Transform"><a href="#变换Transform" class="headerlink" title="变换Transform"></a>变换Transform</h2><p>在其子组件绘制时对其应用一些矩阵变换，Matrix4是一个4D矩阵，可以实现矩阵操作。</p>
+<h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>是一个组合类容器</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Container(&#123;</span><br><span class="line">  <span class="keyword">this</span>.alignment,</span><br><span class="line">  <span class="keyword">this</span>.padding, <span class="comment">//容器内补白，属于decoration的装饰范围</span></span><br><span class="line">  Color color, <span class="comment">// 背景色</span></span><br><span class="line">  Decoration decoration, <span class="comment">// 背景装饰</span></span><br><span class="line">  Decoration foregroundDecoration, <span class="comment">//前景装饰</span></span><br><span class="line">  <span class="built_in">double</span> width,<span class="comment">//容器的宽度</span></span><br><span class="line">  <span class="built_in">double</span> height, <span class="comment">//容器的高度</span></span><br><span class="line">  BoxConstraints constraints, <span class="comment">//容器大小的限制条件</span></span><br><span class="line">  <span class="keyword">this</span>.margin,<span class="comment">//容器外补白，不属于decoration的装饰范围</span></span><br><span class="line">  <span class="keyword">this</span>.transform, <span class="comment">//变换</span></span><br><span class="line">  <span class="keyword">this</span>.child,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scaffold，TabBar，底部导航"><a href="#Scaffold，TabBar，底部导航" class="headerlink" title="Scaffold，TabBar，底部导航"></a>Scaffold，TabBar，底部导航</h2><h2 id="Scafflold"><a href="#Scafflold" class="headerlink" title="Scafflold"></a>Scafflold</h2><p>是一个路由页的骨架</p>
+<h2 id="剪裁Clip"><a href="#剪裁Clip" class="headerlink" title="剪裁Clip"></a>剪裁Clip</h2><table>
+<thead>
+<tr>
+<th>裁剪widget</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ClipOval</td>
+<td>矩形内切圆形</td>
+</tr>
+<tr>
+<td>ClipRRect</td>
+<td>剪裁为圆角矩形</td>
+</tr>
+<tr>
+<td>ClipRect</td>
+<td>剪裁到实际占用的矩形大小</td>
+</tr>
+</tbody></table>
+<h3 id="CustomClipper"><a href="#CustomClipper" class="headerlink" title="CustomClipper"></a>CustomClipper</h3><p>裁剪子组件的特定区域</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/01/%E5%8F%AF%E6%BB%9A%E5%8A%A8%E7%BB%84%E4%BB%B6/" rel="next" title="可滚动组件">
+                <i class="fa fa-chevron-left"></i> 可滚动组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/21/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" rel="prev" title="阿里云服务器配置环境">
+                阿里云服务器配置环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LuHai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#容器类widget"><span class="nav-number">1.</span> <span class="nav-text">容器类widget</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#填充Padding"><span class="nav-number">1.1.</span> <span class="nav-text">填充Padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尺寸限制类容器"><span class="nav-number">1.2.</span> <span class="nav-text">尺寸限制类容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConstrainedBox"><span class="nav-number">1.2.1.</span> <span class="nav-text">ConstrainedBox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SizedBox"><span class="nav-number">1.2.2.</span> <span class="nav-text">SizedBox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重限制"><span class="nav-number">1.2.3.</span> <span class="nav-text">多重限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UnconstrainedBox"><span class="nav-number">1.2.4.</span> <span class="nav-text">UnconstrainedBox</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰容器DecoratedBox"><span class="nav-number">1.3.</span> <span class="nav-text">装饰容器DecoratedBox</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BoxDecoration"><span class="nav-number">1.3.1.</span> <span class="nav-text">BoxDecoration</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变换Transform"><span class="nav-number">1.4.</span> <span class="nav-text">变换Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Container"><span class="nav-number">1.4.1.</span> <span class="nav-text">Container</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scaffold，TabBar，底部导航"><span class="nav-number">1.5.</span> <span class="nav-text">Scaffold，TabBar，底部导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scafflold"><span class="nav-number">1.6.</span> <span class="nav-text">Scafflold</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#剪裁Clip"><span class="nav-number">1.7.</span> <span class="nav-text">剪裁Clip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomClipper"><span class="nav-number">1.7.1.</span> <span class="nav-text">CustomClipper</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LuHai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

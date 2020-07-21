@@ -258,6 +258,341 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lhai0704.github.io/2020/07/21/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuHai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LuHai的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/21/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" itemprop="url">阿里云服务器配置环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-21T20:11:33+08:00">
+                2020-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CentOS服务器配置环境-App开发"><a href="#CentOS服务器配置环境-App开发" class="headerlink" title="CentOS服务器配置环境(App开发 )"></a>CentOS服务器配置环境(App开发 )</h1><h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><ul>
+<li>下载jdk并配置</li>
+<li>下载tomcat并配置</li>
+</ul>
+<h3 id="CentOS防火墙"><a href="#CentOS防火墙" class="headerlink" title="CentOS防火墙"></a>CentOS防火墙</h3><ul>
+<li><p>查看firewall服务状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看firewall状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启，重启，关闭firewall.service服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service firewalld start</span><br><span class="line">service firewalld restart</span><br><span class="line">service firewalld stop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看firewall规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询，开放，关闭端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port&#x3D;8080&#x2F;tcp</span><br><span class="line">firewall-cmd --permanent --add-port&#x3D;8080&#x2F;tcp</span><br><span class="line">firewall-cmd --permanent --remove-port&#x3D;8080&#x2F;tcp</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>开启Tomcat并且开放8080端口后还是无法访问，阿里云服务器控制台里有安全组规则，创建安全组规则（端口范围：8080/8080, 授权对象：0.0.0.0/0）即可访问8080端口。</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;repo.mysql.com&#x2F;mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">yum update</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mysql-server</span><br><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 可以修改密码，删除匿名账户，禁用外部root登陆，删除测试表</span><br><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lhai0704.github.io/2020/07/06/%E5%AE%B9%E5%99%A8%E7%B1%BBwidget/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuHai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LuHai的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/06/%E5%AE%B9%E5%99%A8%E7%B1%BBwidget/" itemprop="url">page</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-06T17:27:35+08:00">
+                2020-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="容器类widget"><a href="#容器类widget" class="headerlink" title="容器类widget"></a>容器类widget</h1><p>容器类widget与布局类widget都作用于其子widget。布局类一般需要接收一个widget数组（children）。容器类widget一般只需要接收一个子widget（child）。布局类widget是按照一定的排列方式来对其子widget进行排列，容器类只是包含子widget对其添加一些修饰，变换，限制。</p>
+<h2 id="填充Padding"><a href="#填充Padding" class="headerlink" title="填充Padding"></a>填充Padding</h2><p>给子节点添加填充，类似于边距。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Padding(&#123;</span><br><span class="line">  ...</span><br><span class="line">  EdgeInsetsGeometry padding,</span><br><span class="line">  Widget child,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>EdgeInsetsGeometry的一个字类：EdgeInsets</p>
+<ul>
+<li>fromLTRB(double left, double top, double right, double bottom)</li>
+<li>all(double value)</li>
+<li>only({left, top, right, bottom})</li>
+<li>symmetric({vertical, horizontal})</li>
+</ul>
+<h2 id="尺寸限制类容器"><a href="#尺寸限制类容器" class="headerlink" title="尺寸限制类容器"></a>尺寸限制类容器</h2><p>限制容器大小，如：ConstrainedBox, SizedBox, UnconstrainedBox, AspectRatio等</p>
+<h3 id="ConstrainedBox"><a href="#ConstrainedBox" class="headerlink" title="ConstrainedBox"></a>ConstrainedBox</h3><p>对子组件添加额外的约束。BoxConstraints用于设置限制条件</p>
+<h3 id="SizedBox"><a href="#SizedBox" class="headerlink" title="SizedBox"></a>SizedBox</h3><p>给子元素指定固定的宽高</p>
+<h3 id="多重限制"><a href="#多重限制" class="headerlink" title="多重限制"></a>多重限制</h3><h3 id="UnconstrainedBox"><a href="#UnconstrainedBox" class="headerlink" title="UnconstrainedBox"></a>UnconstrainedBox</h3><p>可以用于去除多重限制</p>
+<h2 id="装饰容器DecoratedBox"><a href="#装饰容器DecoratedBox" class="headerlink" title="装饰容器DecoratedBox"></a>装饰容器DecoratedBox</h2><p>在其子组件绘制前或后绘制一些装饰（Decoration）如：背景，边框，渐变</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> DecoratedBox(&#123;</span><br><span class="line">  Decoration decoration,		<span class="comment">// 要绘制的装饰，一般用BoxDecoration</span></span><br><span class="line">  DecorationPosition position = DecorationPositon.background,		<span class="comment">// 前或后</span></span><br><span class="line">  Widget child</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="BoxDecoration"><a href="#BoxDecoration" class="headerlink" title="BoxDecoration"></a>BoxDecoration</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BoxDecoration(&#123;</span><br><span class="line">  Color color, <span class="comment">//颜色</span></span><br><span class="line">  DecorationImage image,<span class="comment">//图片</span></span><br><span class="line">  BoxBorder border, <span class="comment">//边框</span></span><br><span class="line">  BorderRadiusGeometry borderRadius, <span class="comment">//圆角</span></span><br><span class="line">  <span class="built_in">List</span>&lt;BoxShadow&gt; boxShadow, <span class="comment">//阴影,可以指定多个</span></span><br><span class="line">  Gradient gradient, <span class="comment">//渐变</span></span><br><span class="line">  BlendMode backgroundBlendMode, <span class="comment">//背景混合模式</span></span><br><span class="line">  BoxShape shape = BoxShape.rectangle, <span class="comment">//形状</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="变换Transform"><a href="#变换Transform" class="headerlink" title="变换Transform"></a>变换Transform</h2><p>在其子组件绘制时对其应用一些矩阵变换，Matrix4是一个4D矩阵，可以实现矩阵操作。</p>
+<h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>是一个组合类容器</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Container(&#123;</span><br><span class="line">  <span class="keyword">this</span>.alignment,</span><br><span class="line">  <span class="keyword">this</span>.padding, <span class="comment">//容器内补白，属于decoration的装饰范围</span></span><br><span class="line">  Color color, <span class="comment">// 背景色</span></span><br><span class="line">  Decoration decoration, <span class="comment">// 背景装饰</span></span><br><span class="line">  Decoration foregroundDecoration, <span class="comment">//前景装饰</span></span><br><span class="line">  <span class="built_in">double</span> width,<span class="comment">//容器的宽度</span></span><br><span class="line">  <span class="built_in">double</span> height, <span class="comment">//容器的高度</span></span><br><span class="line">  BoxConstraints constraints, <span class="comment">//容器大小的限制条件</span></span><br><span class="line">  <span class="keyword">this</span>.margin,<span class="comment">//容器外补白，不属于decoration的装饰范围</span></span><br><span class="line">  <span class="keyword">this</span>.transform, <span class="comment">//变换</span></span><br><span class="line">  <span class="keyword">this</span>.child,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Scaffold，TabBar，底部导航"><a href="#Scaffold，TabBar，底部导航" class="headerlink" title="Scaffold，TabBar，底部导航"></a>Scaffold，TabBar，底部导航</h2><h2 id="Scafflold"><a href="#Scafflold" class="headerlink" title="Scafflold"></a>Scafflold</h2><p>是一个路由页的骨架</p>
+<h2 id="剪裁Clip"><a href="#剪裁Clip" class="headerlink" title="剪裁Clip"></a>剪裁Clip</h2><table>
+<thead>
+<tr>
+<th>裁剪widget</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ClipOval</td>
+<td>矩形内切圆形</td>
+</tr>
+<tr>
+<td>ClipRRect</td>
+<td>剪裁为圆角矩形</td>
+</tr>
+<tr>
+<td>ClipRect</td>
+<td>剪裁到实际占用的矩形大小</td>
+</tr>
+</tbody></table>
+<h3 id="CustomClipper"><a href="#CustomClipper" class="headerlink" title="CustomClipper"></a>CustomClipper</h3><p>裁剪子组件的特定区域</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lhai0704.github.io/2020/07/01/%E5%8F%AF%E6%BB%9A%E5%8A%A8%E7%BB%84%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -366,7 +701,21 @@
 
 <p>reverse 是否按照阅读方向相反的方向滑动。</p>
 <p>primary 是否使用默认的PrimaryScrollController</p>
+<p>不支持基于Sliver的延迟实例化，内容过多性能会降低，应使用ListView</p>
+<h3 id="ListView"><a href="#ListView" class="headerlink" title="ListView"></a>ListView</h3><p>最常用的可滚动组件，可以沿一个方向线性排布所有子组件，支持Sliver延迟构建。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ListView(&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 可滚动widget公共参数</span></span><br><span class="line">  Axis scrollDirection = Axis.vertical,</span><br><span class="line">  <span class="built_in">bool</span> reverse = flase,</span><br><span class="line">  ScrollController controller,</span><br><span class="line">  <span class="built_in">bool</span> primary,</span><br><span class="line">  ScrollPhysics physics,</span><br><span class="line">  EdgeInsetsGeometry padding,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ListView各个构造函数的共同参数</span></span><br><span class="line">  <span class="built_in">double</span> itemExtent,</span><br><span class="line">  <span class="built_in">bool</span> shrinkWrap = <span class="keyword">false</span>,</span><br><span class="line">  <span class="built_in">bool</span> addAutomaticKeepAlives = <span class="keyword">true</span>,</span><br><span class="line">  <span class="built_in">bool</span> addRepaintBoundaries = <span class="keyword">true</span>,</span><br><span class="line">  <span class="built_in">double</span> cacheExtent,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 子widget列表</span></span><br><span class="line">  <span class="built_in">List</span>&lt;Widget&gt; children = <span class="keyword">const</span> &lt;Widget&gt;[],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<p>itemExtent 强制children的长度为滚动方向上子组件的长度。减少计算</p>
+<p>shrinkWrap 是否根据子组件的总长度来设置ListView的长度。默认会占用尽可能多的空间。</p>
+<p>addAutomaticKeepAlives 是否将子组件包裹在AutomaticKeepAlive组件中。</p>
+<p>addRepaintBoundaries 是否将子组件包裹在RepaintBoundaries组件中。避免列表项重绘。</p>
+<h4 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h4><p>有一个children参数，接收widget列表。需要将所有children提前创建。相当于SingleChildScrollView+Column</p>
+<h4 id="ListView-builder"><a href="#ListView-builder" class="headerlink" title="ListView.builder"></a>ListView.builder</h4><p>适合列表项比较多或无限的情况</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ListView.builder(&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 列表项的构建器，返回一个widget。当列表滚动到具体的index位置时，会调用构建器</span></span><br><span class="line">  <span class="meta">@required</span> IndexedWidgetBuilder itemBuilder,</span><br><span class="line">  <span class="built_in">int</span> itemCount,		<span class="comment">// 列表项的数量，无限为null</span></span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="ListView-separated"><a href="#ListView-separated" class="headerlink" title="ListView.separated"></a>ListView.separated</h4><p>在生成的列表项之间添加一个分割组件，比build()多了一个separatorBuilder参数，是分割组件生成器。</p>
+<h4 id="ListView-custom"><a href="#ListView-custom" class="headerlink" title="ListView.custom"></a>ListView.custom</h4><p>自定义列表项生成模型，实现一个SliverChildDelegate生成列表项组件。</p>
+<h3 id="GridView"><a href="#GridView" class="headerlink" title="GridView"></a>GridView</h3>
           
         
       
@@ -783,7 +1132,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -805,7 +1154,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
