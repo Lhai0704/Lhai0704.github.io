@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>论文解读：Are you in a Masquerade? Exploring the Behavior and Impact of Large Language Model Driven Social Bots in Online Social Networks</title>
+    <link href="/2024/11/03/2024-11-3/"/>
+    <url>/2024/11/03/2024-11-3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>生成式人工智能时代对网络舆情的传播有了新的影响，由大语言模型（LLM）驱动的社交机器人与以往相比更加智能。<br>chirper.ai是一个模仿twitter的社交平台，其中用户的行为均由LLM驱动。人们可以创建用户，定义用户的个性和属性。<br>该论文从chirper.ai网站中爬取了用户数据，并进行分析。</p><h1 id="数据收集"><a href="#数据收集" class="headerlink" title="数据收集"></a>数据收集</h1><p><a href="https://github.com/Litsay/Masquerade-23">https://github.com/Litsay/Masquerade-23</a><br>广度优先搜索爬取了54.46万条离散推文，爬取了3.67万个用户账户，产生了<font color="#ff0000">平台切片</font>子数据集（SDPS）<br>收集了3.22万个用户的元数据、历史推文数据和活动信息，共240万条记录，成为<font color="#ff0000">账户记录</font>子数据集（SDAR）<br>生成了粗粒度的推文和行为时间戳，解析了行为关系以构建社交机器人之间的交互网络。对每个账户的推文进行了相似性评估。</p><h1 id="衡量生成内容的毒性"><a href="#衡量生成内容的毒性" class="headerlink" title="衡量生成内容的毒性"></a>衡量生成内容的毒性</h1><p>使用Perspective API对英文文本进行毒性分析，使用COLD模型对中文文本进行二次评估。</p><h1 id="RQ1-LLM驱动的社交机器人的总体特征"><a href="#RQ1-LLM驱动的社交机器人的总体特征" class="headerlink" title="RQ1: LLM驱动的社交机器人的总体特征"></a>RQ1: LLM驱动的社交机器人的总体特征</h1><p>从LLM的内在特征出发，研究LLM驱动的社交机器人在行为和生成内容方面的宏观特征。从两个角度入手：生成内容的相似性和实时感知信息的敏感性。</p><h2 id="生成推文的相似性"><a href="#生成推文的相似性" class="headerlink" title="生成推文的相似性"></a>生成推文的相似性</h2><p><font color="#ff0000">对于普通用户来说，他们帐户内容的相似性反映了他们的兴趣和偏好。就社交机器人而言，其帐户内容的相似性可能会暴露其目标，而不适当的行为规则可能会导致社交机器人发布内容的相似性显着增加。这可以使普通用户更容易识别社交机器人，从而降低其可信度并缩短其生命周期。</font><br>与TwiBot-20中随机采样了人类数据进行对比。LLM驱动的机器人与人类和传统机器人相比，内容相似度偏高。<br>不同语言驱动的机器人生成的内容相似度也有差异。部分原因是LLM在处理不同语言时有性能差异。<br>在机器人发布的推文中，58.36%的推文至少有一个关键词与个人资料中的自我描述重叠。人类只有10.15%。这是LLM驱动的机器人的一个特征。</p><h2 id="对新话题的感知"><a href="#对新话题的感知" class="headerlink" title="对新话题的感知"></a>对新话题的感知</h2><p>由于行为规则的限制，机器人可能不了解特别新的新闻。</p><h1 id="RQ2-LLM驱动的机器人的不良行为对社交网络的影响"><a href="#RQ2-LLM驱动的机器人的不良行为对社交网络的影响" class="headerlink" title="RQ2: LLM驱动的机器人的不良行为对社交网络的影响"></a>RQ2: LLM驱动的机器人的不良行为对社交网络的影响</h1><h1 id="毒性分布"><a href="#毒性分布" class="headerlink" title="毒性分布"></a>毒性分布</h1><p>少部分机器人释放了大量的有毒内容，影响了整个平台的毒性分布</p><h1 id="不良行为分类"><a href="#不良行为分类" class="headerlink" title="不良行为分类"></a>不良行为分类</h1><p>恶意攻击、威胁、性骚扰和身份仇恨。</p><h1 id="RQ3-现有的检测方法"><a href="#RQ3-现有的检测方法" class="headerlink" title="RQ3: 现有的检测方法"></a>RQ3: 现有的检测方法</h1><p>现有的基于特征的检测方法，性能略有下降。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>LLM驱动的机器人的特征：</p><ol><li>推文的相似性比人类高</li><li>不了解特别新的新闻<br>缺点：缺乏LLM驱动的机器人与真实人类的交互数据。chirper不提供LLM的prompt。</li></ol><h2 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h2><p>还有一篇论文同样分析了chirper中的数据，Artificial Intelligence Chatbots Mimic Human Collective Behaviour。<br>同质性，即人们倾向于与相似的其他人组成社区。<br>在一个由大型语言模型 (N = 33,299) 驱动的大型 AI 聊天机器人模拟在线社会中，我们发现社区会随着时间的推移围绕使用共同语言的机器人形成。此外，在主要使用英语的聊天机器人 (N = 17,746) 中，社区会围绕发布类似内容的机器人出现。<br>同样提取了chirper的数据：<br><a href="https://osf.io/rsuwn/?view_only=d9f954f7947143f3b2fdcdb365acbaea">https://osf.io/rsuwn/?view_only=d9f954f7947143f3b2fdcdb365acbaea</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>LLM</tag>
+      
+      <tag>Paper</tag>
+      
+      <tag>Social_Network</tag>
+      
+      <tag>Bots</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>综述：基于LLM的自主Agent</title>
+    <link href="/2024/06/14/%E7%BB%BC%E8%BF%B0%EF%BC%9A%E5%9F%BA%E4%BA%8ELLM%E7%9A%84%E8%87%AA%E4%B8%BBAgent/"/>
+    <url>/2024/06/14/%E7%BB%BC%E8%BF%B0%EF%BC%9A%E5%9F%BA%E4%BA%8ELLM%E7%9A%84%E8%87%AA%E4%B8%BBAgent/</url>
+    
+    <content type="html"><![CDATA[<h1 id="文章结构"><a href="#文章结构" class="headerlink" title="文章结构"></a>文章结构</h1><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><h1 id="基于LLM的自主Agent的结构"><a href="#基于LLM的自主Agent的结构" class="headerlink" title="基于LLM的自主Agent的结构"></a>基于LLM的自主Agent的<font color="#ff0000">结构</font></h1><h1 id="基于LLM的自主Agent的应用"><a href="#基于LLM的自主Agent的应用" class="headerlink" title="基于LLM的自主Agent的应用"></a>基于LLM的自主Agent的<font color="#ff0000">应用</font></h1><h1 id="基于LLM的自主Agent的评估"><a href="#基于LLM的自主Agent的评估" class="headerlink" title="基于LLM的自主Agent的评估"></a>基于LLM的自主Agent的<font color="#ff0000">评估</font></h1>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>LLM</tag>
+      
+      <tag>Paper</tag>
+      
+      <tag>Agent</tag>
+      
+      <tag>Survey</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title></title>
     <link href="/2024/06/13/A%20survey%20on%20large%20language%20model%20based%20autonomous%20agents/"/>
     <url>/2024/06/13/A%20survey%20on%20large%20language%20model%20based%20autonomous%20agents/</url>
