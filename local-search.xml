@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>LLM驱动的智能体形成的社交网络</title>
+    <link href="/2024/11/04/LLM%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%BD%A2%E6%88%90%E7%9A%84%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/"/>
+    <url>/2024/11/04/LLM%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%BD%A2%E6%88%90%E7%9A%84%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="论文综述"><a href="#论文综述" class="headerlink" title="论文综述"></a>论文综述</h1><h2 id="Generative-Agents-Interactive-Simulacra-of-Human-Behavior"><a href="#Generative-Agents-Interactive-Simulacra-of-Human-Behavior" class="headerlink" title="Generative Agents: Interactive Simulacra of Human Behavior"></a>Generative Agents: Interactive Simulacra of Human Behavior</h2><p>![[GenerativeAgents.png]]<br>25个由LLM驱动的村民组成的虚拟小镇，实现了对人类行为的可信模拟。</p><h2 id="Simulating-Opinion-Dynamics-with-Networks-of-LLM-based-Agents"><a href="#Simulating-Opinion-Dynamics-with-Networks-of-LLM-based-Agents" class="headerlink" title="Simulating Opinion Dynamics with Networks of LLM-based Agents"></a>Simulating Opinion Dynamics with Networks of LLM-based Agents</h2><p>![[SimulatingOpinionDynamics.png]]<br>LLM驱动的智能体形成的社交网络<br>结论：Agent会趋向于LLM的固有偏见，尤其是当它们讨论的问题有确定的答案时，agent会倾向于与事实信息保持一致，而不管他们的角色如何，这限制了他们对具有抗拒事实信念的个人的角色扮演有效性。<br>如果加入认知偏差的话，会导致意见分裂。</p><p>Social Simulacra: Creating Populated Prototypes for Social Computing Systems<br>基于法学硕士的代理能够生成与人类撰写的社交媒体帖子没有区别的社交媒体帖子</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>LLM</tag>
+      
+      <tag>Agent</tag>
+      
+      <tag>Survey</tag>
+      
+      <tag>Paper</tag>
+      
+      <tag>Social_Network</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文解读：Are you in a Masquerade? Exploring the Behavior and Impact of Large Language Model Driven Social Bots in Online Social Networks</title>
     <link href="/2024/11/03/2024-11-3/"/>
     <url>/2024/11/03/2024-11-3/</url>
@@ -41,11 +68,11 @@
       
       <tag>LLM</tag>
       
-      <tag>Paper</tag>
-      
       <tag>Agent</tag>
       
       <tag>Survey</tag>
+      
+      <tag>Paper</tag>
       
     </tags>
     
