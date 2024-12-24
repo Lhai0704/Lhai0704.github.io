@@ -4,11 +4,30 @@
   
   
   <entry>
+    <title>汇编语言笔记</title>
+    <link href="/2024/12/24/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"/>
+    <url>/2024/12/24/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/</url>
+    
+    <content type="html"><![CDATA[<p>汇编语言是直接在硬件之上工作的编程语言。汇编指令和机器指令的差别在于指令的表示方法上。汇编指令是机器指令的助记符，同机器指令一一对应。汇编指令是机器指令便于记忆的书写格式。每一种CPU都有自己的汇编指令集。<br>8个bit组成一个Byte（字节）。存储器的容量是以字节为最小单位来计算的。<br>根据传输信息的不同，总线从逻辑上分为3类：地址总线、控制总线和数据总线。<br>地址总线的宽度决定了CPU的寻址能力。数据总线的宽度决定了CPU与其他器件进行数据传送时的一次数据传送量。控制总线的宽度决定了CPU对系统中其他器件的控制能力。<br>例题：80386的地址总线宽度为32根，它一次可以传送的数据为___B？     答案：32bit=4B<br>CPU通过总线向接口卡发送命令，接口卡根据CPU的命令控制外设进行工作。<br>对CPU来讲，系统中所有存储器的存储单元都处于一个统一的逻辑存储器中。</p><p>典型CPU由运算器、控制器、寄存器等器件组成，这些器件靠内部总线相连。<br>寄存器是CPU中程序员可以用指令读写的部件。程序员通过改变各种寄存器中的内容来实现对CPU的控制。<br>8086的所有寄存器都是16位的，可以存放两个字节。AX、BX、CX、DX 这四个寄存器通常用来存放一般性数据，被称为通用寄存器。这四个寄存器可以分为两个可独立使用的8位寄存器来用，例如AX可以分为AH和AL。<br>在进行数据传送或运算时，要注意指令的两个操作对象的位数应当是一致的。<br>8086有20位地址总线，可以达到1MB的寻址能力，但8086是16位结构，在内部一次性处理、传输、暂时存储的地址为16位，如果将地址从内部简单发出，只能送出16位地址，寻址能力只有64KB。<br>8086采用一种在内部用两个16位地址合成的方法来形成一个20位的物理地址。<br>CPU中的相关部件提供两个16位的地址，一个称为段地址，另一个称为偏移地址。地址加法器将两个16位地址合成为一个二十位的物理地址。<br>地址加法器采用<code>物理地址=段地址*16 + 偏移地址的方法合成</code> 。例如：段地址为1230，段地址<code>*</code>16是对十进制而言的，对十六进制来说就是在后面加个零，就变成了12300，然后再加上偏移地址。<br>例题：有一数据存放在内存20000H单元中，现给定段地址为SA，若想用偏移地址寻到此单元。则SA应满足的条件是：最小为<strong><em>，最大为</em></strong>。答案：偏移地址为0时，SA最大，为2000H。想知道SA最小为多少，让偏移地址最大，但不能设偏移地址为FFFF，因为偏移地址的最后一位和物理地址的最后一位需要是一样的，所以应该设偏移地址为FFF0，所以段地址<code>*</code>16为20000-FFF0=10010，所以SA最小为1001。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>汇编语言</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LLM驱动的智能体形成的社交网络</title>
     <link href="/2024/11/04/LLM%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%BD%A2%E6%88%90%E7%9A%84%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/"/>
     <url>/2024/11/04/LLM%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E5%BD%A2%E6%88%90%E7%9A%84%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/</url>
     
-    <content type="html"><![CDATA[<h1 id="论文综述"><a href="#论文综述" class="headerlink" title="论文综述"></a>论文综述</h1><h2 id="Generative-Agents-Interactive-Simulacra-of-Human-Behavior"><a href="#Generative-Agents-Interactive-Simulacra-of-Human-Behavior" class="headerlink" title="Generative Agents: Interactive Simulacra of Human Behavior"></a>Generative Agents: Interactive Simulacra of Human Behavior</h2><p>![[GenerativeAgents.png]]<br>25个由LLM驱动的村民组成的虚拟小镇，实现了对人类行为的可信模拟。</p><h2 id="Simulating-Opinion-Dynamics-with-Networks-of-LLM-based-Agents"><a href="#Simulating-Opinion-Dynamics-with-Networks-of-LLM-based-Agents" class="headerlink" title="Simulating Opinion Dynamics with Networks of LLM-based Agents"></a>Simulating Opinion Dynamics with Networks of LLM-based Agents</h2><p>![[SimulatingOpinionDynamics.png]]<br>LLM驱动的智能体形成的社交网络<br>结论：Agent会趋向于LLM的固有偏见，尤其是当它们讨论的问题有确定的答案时，agent会倾向于与事实信息保持一致，而不管他们的角色如何，这限制了他们对具有抗拒事实信念的个人的角色扮演有效性。<br>如果加入认知偏差的话，会导致意见分裂。</p><p>Social Simulacra: Creating Populated Prototypes for Social Computing Systems<br>基于法学硕士的代理能够生成与人类撰写的社交媒体帖子没有区别的社交媒体帖子</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="论文综述"><a href="#论文综述" class="headerlink" title="论文综述"></a>论文综述</h1><h2 id="Generative-Agents-Interactive-Simulacra-of-Human-Behavior"><a href="#Generative-Agents-Interactive-Simulacra-of-Human-Behavior" class="headerlink" title="Generative Agents: Interactive Simulacra of Human Behavior"></a>Generative Agents: Interactive Simulacra of Human Behavior</h2><p>![[GenerativeAgents.png]]<br>25个由LLM驱动的村民组成的虚拟小镇，实现了对人类行为的可信模拟。</p><h2 id="Simulating-Opinion-Dynamics-with-Networks-of-LLM-based-Agents"><a href="#Simulating-Opinion-Dynamics-with-Networks-of-LLM-based-Agents" class="headerlink" title="Simulating Opinion Dynamics with Networks of LLM-based Agents"></a>Simulating Opinion Dynamics with Networks of LLM-based Agents</h2><p>![[SimulatingOpinionDynamics.png]]<br>LLM驱动的智能体形成的社交网络<br>结论：Agent会趋向于LLM的固有偏见，尤其是当它们讨论的问题有确定的答案时，agent会倾向于与事实信息保持一致，而不管他们的角色如何，这限制了他们对具有抗拒事实信念的个人的角色扮演有效性。<br>如果加入认知偏差的话，会导致意见分裂。</p><h2 id="S3-Social-network-Simulation-System-with-Large-Language-Model-Empowered-Agents"><a href="#S3-Social-network-Simulation-System-with-Large-Language-Model-Empowered-Agents" class="headerlink" title="S3: Social-network Simulation System with Large Language Model-Empowered Agents"></a>S3: Social-network Simulation System with Large Language Model-Empowered Agents</h2><p>同样模拟了一个社交网络，</p><h2 id="Social-Simulacra-Creating-Populated-Prototypes-for-Social-Computing-Systems"><a href="#Social-Simulacra-Creating-Populated-Prototypes-for-Social-Computing-Systems" class="headerlink" title="Social Simulacra: Creating Populated Prototypes for Social Computing Systems"></a>Social Simulacra: Creating Populated Prototypes for Social Computing Systems</h2><p>基于法学硕士的代理能够生成与人类撰写的社交媒体帖子没有区别的社交媒体帖子</p>]]></content>
     
     
     
@@ -16,13 +35,13 @@
       
       <tag>LLM</tag>
       
-      <tag>Agent</tag>
-      
-      <tag>Survey</tag>
-      
       <tag>Paper</tag>
       
       <tag>Social_Network</tag>
+      
+      <tag>Agent</tag>
+      
+      <tag>Survey</tag>
       
     </tags>
     
@@ -68,11 +87,11 @@
       
       <tag>LLM</tag>
       
+      <tag>Paper</tag>
+      
       <tag>Agent</tag>
       
       <tag>Survey</tag>
-      
-      <tag>Paper</tag>
       
     </tags>
     

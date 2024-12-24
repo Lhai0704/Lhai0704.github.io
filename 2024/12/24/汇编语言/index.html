@@ -16,27 +16,24 @@
   <meta name="author" content="LuHai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文章结构引言基于LLM的自主Agent的结构基于LLM的自主Agent的应用基于LLM的自主Agent的评估">
+    <meta name="description" content="汇编语言是直接在硬件之上工作的编程语言。汇编指令和机器指令的差别在于指令的表示方法上。汇编指令是机器指令的助记符，同机器指令一一对应。汇编指令是机器指令便于记忆的书写格式。每一种CPU都有自己的汇编指令集。8个bit组成一个Byte（字节）。存储器的容量是以字节为最小单位来计算的。根据传输信息的不同，总线从逻辑上分为3类：地址总线、控制总线和数据总线。地址总线的宽度决定了CPU的寻址能力。数据总线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="综述：基于LLM的自主Agent">
-<meta property="og:url" content="http://lhai0704.github.io/2024/06/14/%E7%BB%BC%E8%BF%B0%EF%BC%9A%E5%9F%BA%E4%BA%8ELLM%E7%9A%84%E8%87%AA%E4%B8%BBAgent/index.html">
+<meta property="og:title" content="汇编语言笔记">
+<meta property="og:url" content="http://lhai0704.github.io/2024/12/24/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.html">
 <meta property="og:site_name" content="LuHai的个人博客">
-<meta property="og:description" content="文章结构引言基于LLM的自主Agent的结构基于LLM的自主Agent的应用基于LLM的自主Agent的评估">
+<meta property="og:description" content="汇编语言是直接在硬件之上工作的编程语言。汇编指令和机器指令的差别在于指令的表示方法上。汇编指令是机器指令的助记符，同机器指令一一对应。汇编指令是机器指令便于记忆的书写格式。每一种CPU都有自己的汇编指令集。8个bit组成一个Byte（字节）。存储器的容量是以字节为最小单位来计算的。根据传输信息的不同，总线从逻辑上分为3类：地址总线、控制总线和数据总线。地址总线的宽度决定了CPU的寻址能力。数据总线">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lhai0704.github.io/img/avatar.png">
-<meta property="article:published_time" content="2024-06-14T03:46:54.370Z">
-<meta property="article:modified_time" content="2024-06-14T03:59:04.343Z">
+<meta property="article:published_time" content="2024-12-24T01:19:05.246Z">
+<meta property="article:modified_time" content="2024-12-24T02:25:47.994Z">
 <meta property="article:author" content="LuHai">
-<meta property="article:tag" content="LLM">
-<meta property="article:tag" content="Paper">
-<meta property="article:tag" content="Agent">
-<meta property="article:tag" content="Survey">
+<meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://lhai0704.github.io/img/avatar.png">
   
   
   
-  <title>综述：基于LLM的自主Agent - LuHai的个人博客</title>
+  <title>汇编语言笔记 - LuHai的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -190,7 +187,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="综述：基于LLM的自主Agent"></span>
+            <span id="subtitle" data-typed-text="汇编语言笔记"></span>
           
         </div>
 
@@ -201,8 +198,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-14 11:46" pubdate>
-          2024年6月14日 中午
+        <time datetime="2024-12-24 09:19" pubdate>
+          2024年12月24日 上午
         </time>
       </span>
     
@@ -213,7 +210,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          31 字
+          869 字
         
       </span>
     
@@ -224,7 +221,7 @@
         
         
         
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -261,12 +258,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">综述：基于LLM的自主Agent</h1>
+            <h1 id="seo-header">汇编语言笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="文章结构"><a href="#文章结构" class="headerlink" title="文章结构"></a>文章结构</h1><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><h1 id="基于LLM的自主Agent的结构"><a href="#基于LLM的自主Agent的结构" class="headerlink" title="基于LLM的自主Agent的结构"></a>基于LLM的自主Agent的<font color="#ff0000">结构</font></h1><h1 id="基于LLM的自主Agent的应用"><a href="#基于LLM的自主Agent的应用" class="headerlink" title="基于LLM的自主Agent的应用"></a>基于LLM的自主Agent的<font color="#ff0000">应用</font></h1><h1 id="基于LLM的自主Agent的评估"><a href="#基于LLM的自主Agent的评估" class="headerlink" title="基于LLM的自主Agent的评估"></a>基于LLM的自主Agent的<font color="#ff0000">评估</font></h1>
+                <p>汇编语言是直接在硬件之上工作的编程语言。汇编指令和机器指令的差别在于指令的表示方法上。汇编指令是机器指令的助记符，同机器指令一一对应。汇编指令是机器指令便于记忆的书写格式。每一种CPU都有自己的汇编指令集。<br>8个bit组成一个Byte（字节）。存储器的容量是以字节为最小单位来计算的。<br>根据传输信息的不同，总线从逻辑上分为3类：地址总线、控制总线和数据总线。<br>地址总线的宽度决定了CPU的寻址能力。数据总线的宽度决定了CPU与其他器件进行数据传送时的一次数据传送量。控制总线的宽度决定了CPU对系统中其他器件的控制能力。<br>例题：80386的地址总线宽度为32根，它一次可以传送的数据为___B？     答案：32bit=4B<br>CPU通过总线向接口卡发送命令，接口卡根据CPU的命令控制外设进行工作。<br>对CPU来讲，系统中所有存储器的存储单元都处于一个统一的逻辑存储器中。</p>
+<p>典型CPU由运算器、控制器、寄存器等器件组成，这些器件靠内部总线相连。<br>寄存器是CPU中程序员可以用指令读写的部件。程序员通过改变各种寄存器中的内容来实现对CPU的控制。<br>8086的所有寄存器都是16位的，可以存放两个字节。AX、BX、CX、DX 这四个寄存器通常用来存放一般性数据，被称为通用寄存器。这四个寄存器可以分为两个可独立使用的8位寄存器来用，例如AX可以分为AH和AL。<br>在进行数据传送或运算时，要注意指令的两个操作对象的位数应当是一致的。<br>8086有20位地址总线，可以达到1MB的寻址能力，但8086是16位结构，在内部一次性处理、传输、暂时存储的地址为16位，如果将地址从内部简单发出，只能送出16位地址，寻址能力只有64KB。<br>8086采用一种在内部用两个16位地址合成的方法来形成一个20位的物理地址。<br>CPU中的相关部件提供两个16位的地址，一个称为段地址，另一个称为偏移地址。地址加法器将两个16位地址合成为一个二十位的物理地址。<br>地址加法器采用<code>物理地址=段地址*16 + 偏移地址的方法合成</code> 。例如：段地址为1230，段地址<code>*</code>16是对十进制而言的，对十六进制来说就是在后面加个零，就变成了12300，然后再加上偏移地址。<br>例题：有一数据存放在内存20000H单元中，现给定段地址为SA，若想用偏移地址寻到此单元。则SA应满足的条件是：最小为<strong><em>，最大为</em></strong>。答案：偏移地址为0时，SA最大，为2000H。想知道SA最小为多少，让偏移地址最大，但不能设偏移地址为FFFF，因为偏移地址的最后一位和物理地址的最后一位需要是一样的，所以应该设偏移地址为FFF0，所以段地址<code>*</code>16为20000-FFF0=10010，所以SA最小为1001。</p>
+
                 
               </div>
             
@@ -278,13 +277,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
-      
-        <a href="/tags/Paper/" class="print-no-link">#Paper</a>
-      
-        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
-      
-        <a href="/tags/Survey/" class="print-no-link">#Survey</a>
+        <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" class="print-no-link">#汇编语言</a>
       
     </div>
   
