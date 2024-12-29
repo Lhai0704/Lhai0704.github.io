@@ -16,16 +16,16 @@
   <meta name="author" content="LuHai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="JavaWebHTML + CSSCSS选择器  元素选择器：标签，例如h1  id选择器：给标签指定id属性，&lt;h1 &#x3D;&#x3D;id&#x3D;”hid”&#x3D;&#x3D;&gt;&lt;&#x2F;h1&gt;，&lt;style&gt; &#x3D;&#x3D;#&#x3D;&#x3D;hid &#123;  注：id不会重复  类选择器：&lt;h1 &#x3D;&#x3D;class&#x3D;”className”&#x3D;&#x3D;&gt;a&lt;&#x2F;h1&gt;，&lt;style&gt; &#x3D;&#x3D;&#x3D;&#x3D;">
+    <meta name="description" content="JavaWebHTML + CSSCSS选择器  元素选择器：标签，例如h1  id选择器：给标签指定id属性，用#选择，注：id不会重复  类选择器：用class注明类，用.选择   优先级：id选择器 &gt; 类选择器 盒子模型：由内向外，content，内边距padding，边框border，外边距margin div 标签：一行只显示一个，宽度默认是父元素的宽度 span 标签：一行可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb笔记">
 <meta property="og:url" content="http://lhai0704.github.io/2024/12/28/JavaWeb%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="LuHai的个人博客">
-<meta property="og:description" content="JavaWebHTML + CSSCSS选择器  元素选择器：标签，例如h1  id选择器：给标签指定id属性，&lt;h1 &#x3D;&#x3D;id&#x3D;”hid”&#x3D;&#x3D;&gt;&lt;&#x2F;h1&gt;，&lt;style&gt; &#x3D;&#x3D;#&#x3D;&#x3D;hid &#123;  注：id不会重复  类选择器：&lt;h1 &#x3D;&#x3D;class&#x3D;”className”&#x3D;&#x3D;&gt;a&lt;&#x2F;h1&gt;，&lt;style&gt; &#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:description" content="JavaWebHTML + CSSCSS选择器  元素选择器：标签，例如h1  id选择器：给标签指定id属性，用#选择，注：id不会重复  类选择器：用class注明类，用.选择   优先级：id选择器 &gt; 类选择器 盒子模型：由内向外，content，内边距padding，边框border，外边距margin div 标签：一行只显示一个，宽度默认是父元素的宽度 span 标签：一行可以">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lhai0704.github.io/img/avatar.png">
 <meta property="article:published_time" content="2024-12-28T15:13:47.677Z">
-<meta property="article:modified_time" content="2024-12-28T15:22:19.202Z">
+<meta property="article:modified_time" content="2024-12-29T13:24:21.675Z">
 <meta property="article:author" content="LuHai">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -210,7 +210,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          805 字
+          1.1k 字
         
       </span>
     
@@ -221,7 +221,7 @@
         
         
         
-          7 分钟
+          10 分钟
         
       </span>
     
@@ -267,9 +267,9 @@
 <ul>
 <li><p>元素选择器：标签，例如h1</p>
 </li>
-<li><p>id选择器：给标签指定id属性，<code>&lt;h1 ==id=”hid”==&gt;&lt;/h1&gt;，&lt;style&gt; ==#==hid &#123;</code><br>  注：id不会重复</p>
+<li><p>id选择器：给标签指定id属性，用<code>#</code>选择，注：id不会重复</p>
 </li>
-<li><p>类选择器：<code>&lt;h1 ==class=”className”==&gt;a&lt;/h1&gt;，&lt;style&gt; ====.====className &#123;</code></p>
+<li><p>类选择器：用class注明类，用<code>.</code>选择</p>
 </li>
 </ul>
 <p>优先级：id选择器 &gt; 类选择器</p>
@@ -279,21 +279,21 @@
 <p>表单form标签：主要负责数据采集功能，例如登录，填写信息等</p>
 <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>运算符：<code>==</code>会进行类型转换，<code>===</code>不会进行类型转换。</p>
 <p>类型转换：parseInt，将字符串转换为数字，从第一个字符开始转换，一直到非数字字符。转换不了的话返回NaN</p>
-<p>对象：</p>
-<ol>
+<h3 id="对象："><a href="#对象：" class="headerlink" title="对象："></a>对象：</h3><ol>
 <li><p>基础对象：</p>
 <ol>
-<li><p>Array：定义：new Array() 或 直接[]。数组长度可变，例如一个有三个元素的数组可以给第十个元素赋值，中间的元素为undefined。数组可以存放不同类型的数据。</p>
-<p> for循环遍历数组中所有元素，forEach遍历有值的元素</p>
+<li><p>Array：定义：new Array() 或 直接[]。数组长度可变，例如一个有三个元素的数组可以给第十个元素赋值，中间的元素为undefined。数组可以存放不同类型的数据。<br> for循环遍历数组中所有元素，forEach遍历有值的元素    </p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];<br>arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e);<br>&#125;);<br>arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e);<br>&#125;);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>自定义对象    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> 对象名 = &#123;<br>	属性名: 属性值;<br>	函数名() &#123;&#125;;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
 </li>
 </ol>
 </li>
 </ol>
-<pre><code class="hljs">2. 自定义对象    
-    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> 对象名 = &#123;<br>	属性名: 属性值;<br>	函数名() &#123;&#125;;<br>&#125;;<br></code></pre></td></tr></table></figure></code></pre><ol start="2">
+<ol start="2">
 <li><p>BOM 浏览器对象模型</p>
 </li>
 <li><p>DOM 文档对象模型</p>
@@ -327,10 +327,42 @@
 <li><p>JSON参数：定义POJO接收参数，需要加上RequestBody注解</p>
 </li>
 <li><p>路径参数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-meta">@RequestMapping(&quot;/hi/&#123;name&#125;&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">who</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String name)</span> &#123;<br>    System.out.println(name);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ok&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-meta">@RequestMapping(&quot;/hi/&#123;name&#125;&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">who</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String name)</span> &#123;<br>    System.out.println(name);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ok&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
 </ul>
 </li>
 </ul>
+<p>响应：<br>使用ResponseBody注解，将方法返回值直接响应，如果是对象或者集合，将其转换为JSON后响应。<br>RestController = Controller + ResponseBody</p>
+<p>三层架构：<br>Controller：控制层，接收前端发送的请求，对请求进行处理，并响应数据。<br>Service：业务逻辑层，处理具体业务逻辑<br>dao：数据访问层（持久层），负责数据访问操作</p>
+<p>控制反转IOC：容器来控制对象的创建控制权<br>依赖注入DI：容器为程序提供运行时所依赖的资源<br>bean对象：IOC容器中创建、管理的对象。</p>
+<p>Service层和Dao层的实现类交给IOC容器管理：类上面加上Component注解<br>为Controller层和Service层注入运行时所依赖的对象：变量上面加上AutoWired注解</p>
+<p>要把某个对象交给IOC容器管理，在类上加注解：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Component</td>
+<td>声明bean的基础注解，不属于以下三类时用此注解</td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>标注控制器类Controller</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>标注业务类Service</td>
+</tr>
+<tr>
+<td>@Respository</td>
+<td>标注数据访问类，由于与mybatis整合，用得少</td>
+</tr>
+</tbody></table>
+<p>AutoWired自动装配，默认按照类型，如果有多个相同类型的bean，会报错。解决方法有：加上Primary注解，指定优先级；加上Qualifier注解，手动指定注入哪个bean；加上Resource注解，手动指定bean。</p>
 
                 
               </div>
