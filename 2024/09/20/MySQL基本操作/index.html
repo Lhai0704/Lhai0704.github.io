@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuHai">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据库：数据存储的仓库数据库管理系统DBMS：操纵和管理数据库的大型软件SQL：操作关系型数据库的编程语言，是一套标准mysql默认端口号是3306mysql –versionmysql_secure_installationmysql -u root -p：以root身份用密码登录mysql [-h 127.0.0.1] [-P 3306] -u root -p 关系型数据库：建立在关系模型的基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LuHai的个人博客">
+<meta property="og:url" content="http://lhai0704.github.io/2024/09/20/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="LuHai的个人博客">
+<meta property="og:description" content="数据库：数据存储的仓库数据库管理系统DBMS：操纵和管理数据库的大型软件SQL：操作关系型数据库的编程语言，是一套标准mysql默认端口号是3306mysql –versionmysql_secure_installationmysql -u root -p：以root身份用密码登录mysql [-h 127.0.0.1] [-P 3306] -u root -p 关系型数据库：建立在关系模型的基">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-20T12:39:44.096Z">
+<meta property="article:modified_time" content="2025-01-17T03:19:39.115Z">
+<meta property="article:author" content="LuHai">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>LuHai的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhai0704.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhai&#39;blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-20 20:39" pubdate>
+          2024年9月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>数据库：数据存储的仓库<br>数据库管理系统DBMS：操纵和管理数据库的大型软件<br>SQL：操作关系型数据库的编程语言，是一套标准<br>mysql默认端口号是3306<br>mysql –version<br>mysql_secure_installation<br>mysql -u root -p：以root身份用密码登录<br><code>mysql [-h 127.0.0.1] [-P 3306] -u root -p</code></p>
+<p>关系型数据库：建立在关系模型的基础上，由多张相互连接的二维表组成的数据库<br>![[截屏2024-09-20 21.20.38.png]]<br>DDL：<br>    数据库：<br>        查询：<code>show databases;</code> 查询所有数据库<br>            <code>select database();</code> 查询当前数据库<br>        创建：<br>        <code>create database [if not exists]数据库名[default charset 字符集][collate 排序规则];</code><br>        删除：<code>drop database [if exists] 数据库名;</code><br>        使用：<code>use 数据库名;</code><br>字符集不建议使用utf8，占三个字节，有些数据是四个字节的，用utf8mb4<br>    表：<br>        查询：<br>            show tables; 查询当前数据库中的所有表<br>            desc 表名; 查询表结构<br>            show create table 表名； 查询表的建表语句<br>        创建表<br>![[截屏2024-09-20 21.39.15.png]]<br>类型：字符串：varchar(50)<br>数据类型主要分为三类：数值，字符串，日期时间<br>数值类型中的decimal 范围依赖于M（精度）和D（标度），123.45中精度为5，标度为2<br>年龄：age tinyint unsigned<br>字符串：定长char，变长varchar<br>日期：date，time，datetime</p>
+<p>表结构的修改：<br>添加字段：alter table 表名 add 字段名 类型 【comment 】【约束】；<br>修改数据类型：alter table 表名 modify 字段名 新的类型；<br>修改字段名和字段类型：alter table 表名 change 旧字段名 新字段名 类型 【comment】【约束】；<br>删除字段：alter table 表名 drop column 字段名；<br>修改表名：rename table 旧表名 to 新表名；<br>删除表：drop table 【if exists】 表名；<br>删除表并重新创建：truncate table 表名；</p>
+<p>DML：增删改 数据<br>添加：<br>指定字段：insert into 表名（字段名1，字段名2） values（值1，值2）；<br>所有字段：insert into 表名 values（值1，值2）；<br>批量添加的话（值1，值2），（值1，值2），（值1，值2）</p>
+<p>修改：<br>update 表名 set 字段名1=值1，字段名2=值2.。。【where 条件】；<br>没有where会修改整张表的字段数据</p>
+<p>删除：<br>delete from 表名 【where 条件】；</p>
+<p>DQL 查询：<br>![[截屏2024-09-20 22.37.13.png]]<br>基本查询：<br>select 字段1，字段2 from 表名；<br>![[截屏2024-09-20 22.39.41.png]]<br>select distinct 字段 from 表名； 去除重复记录</p>
+<p>where后跟条件列表<br>![[截屏2024-09-20 22.45.08.png]]<br>名字为两个字的：<code>select * from emp where name like &#39;__&#39;;</code><br>身份证最后为X的：<code>select * from emp where idcard like &#39;%X&#39;;</code></p>
+<p>![[截屏2024-09-21 06.45.36.png]]<br>聚合函数，作用于表中的某一列<br>select 聚合函数（字段列表）from 表名；<br>注：null不参与聚合函数计算</p>
+<p>![[截屏2024-09-21 07.01.07.png]]<br>![[截屏2024-09-21 08.23.51.png]]<br>group by 通常结合聚合函数使用，对结果进行分组<br>将具有相同值的行分组为汇总行<br>select gender, count(gender) from employees group by gender;<br>理解 GROUP BY 的关键是：它会将具有相同分组列值的<font color="#ff0000">多行数据压缩成一行</font>，然后你可以对这些分组进行聚合计算。<br>HAVING 子句用于过滤分组后的结果。</p>
+<p>![[截屏2024-09-21 08.32.43.png]]<br>ASC升序，DESC降序<br>多个字段，先按第一个字段排序，如果第一个相同，然后再按第二个</p>
+<p>分页查询<br>![[截屏2024-09-21 09.13.01.png]]<br>如果查的是第一页，起始索引0可以省略</p>
+<p>![[截屏2024-09-21 09.29.47.png]]</p>
+<p>编写顺序和执行顺序：<br>![[截屏2024-09-21 09.26.09.png]]</p>
+<p>DCL 管理数据库用户，控制数据库的访问权限<br>![[截屏2024-09-21 09.43.52.png]]<br>主机名用%表示任意主机</p>
+<p>![[截屏2024-09-21 09.51.18.png]]</p>
+<p>![[截屏2024-09-21 09.52.39.png]]</p>
+<p>函数：<br>![[截屏2024-09-21 09.58.50.png]]<br>注：substring的索引从1开始</p>
+<p>![[截屏2024-09-21 10.06.42.png]]</p>
+<p>![[截屏2024-09-21 10.14.47.png]]</p>
+<p>![[截屏2024-09-21 10.21.38.png]]<br>例如学生成绩：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span><br>	id,<br>	<span class="hljs-type">name</span>,<br>	<span class="hljs-keyword">case</span> <span class="hljs-keyword">when</span> math &gt;= <span class="hljs-number">85</span> <span class="hljs-keyword">then</span> <span class="hljs-string">&#x27;good&#x27;</span> <span class="hljs-keyword">when</span> math &gt;= <span class="hljs-number">60</span> <span class="hljs-string">&#x27;ok&#x27;</span> <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;bad&#x27;</span> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">from</span> score;<br></code></pre></td></tr></table></figure>
+
+
+<p>约束：作用于字段上的规则，限制数据<br>![[截屏2024-09-21 10.33.05.png]]<br>自增：auto_increment，可以配合主键</p>
+<p>外键让两张表的数据之间建立连接<br>![[截屏2024-09-21 14.01.29.png]]<br>![[截屏2024-09-21 14.04.27.png]]<br>![[截屏2024-09-21 14.07.07.png]]<br>语法：在创建外键时，后面加上 on update cascade on delete cascade;</p>
+<p>多表查询：<br>多表关系：一对多，多对多，一对一<br>一对多：<br>部门和员工，一个部门有很多员工，一个员工只属于一个部门<br>实现：在多的一方建立外键，指向一的主键<br>多对多：<br>学生与课程，<br>实现：建立第三方中间表，至少包含两个外键，分别关联两方的主键<br>一对一：<br>常用于单表拆分，任意一方加入外键，关联另一方的主键，并设置外键为unique</p>
+<p>多表查询：<br>笛卡尔积：A集合和B集合的所有组合情况<br><code>select * from A, B where a.id = b.id;</code><br>下面的操作都是在过滤笛卡尔积</p>
+<p>多表查询分类：<br>    连接查询：<br>        内连接：A和B交集<br>        外连接：左/右外连接：查询左/右表的数据和交集的数据<br>        自连接<br>    子查询</p>
+<p>![[截屏2024-09-21 14.31.45.png]]<br><code>select e.name, d.name from emp e, dept d where e.dept_id = d.id;</code><br>注：给表起了别名之后，就不能用原名了</p>
+<p><code>select e.name, d.name from emp e inner join dept d on e.dept_id = d.id;</code></p>
+<p>![[截屏2024-09-21 14.37.40.png]]</p>
+<p>![[截屏2024-09-21 14.42.02.png]]</p>
+<p>自连接必须起表别名，就当成两张表</p>
+<p>![[截屏2024-09-21 14.46.32.png]]<br>union all是直接将两个结果拼起来，不加all的话可以去重。<br>字段列表必须一致</p>
+<p>sql中嵌套select语句，称为嵌套查询，又称子查询<br>标量子查询，直接用就行，可以用大于号，小于号等等</p>
+<p>![[截屏2024-09-21 14.59.58.png]]</p>
+<p>![[截屏2024-09-21 15.05.53.png]]<br>![[截屏2024-09-21 15.15.11.png]]<br>通常将结果放在from后，</p>
+<p>事务：<br>![[截屏2024-09-21 20.30.50.png]]</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-keyword">select</span> @<span class="hljs-title">@autocommit</span><span class="hljs-comment">;    为1是自动提交事物</span><br>set @<span class="hljs-title">@autocommit</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;   为0是手动提交事物</span><br><br>commit<span class="hljs-comment">;    提交事务</span><br>rollback<span class="hljs-comment">;  回滚事务</span><br></code></pre></td></tr></table></figure>
+<p>开启事务：<br>start transaction; 或begin;</p>
+<p>![[截屏2024-09-21 20.46.19.png]]</p>
+<p>![[截屏2024-09-21 20.50.54.png]]</p>
+<p>![[截屏2024-09-21 20.56.34.png]]</p>
+<p>![[截屏2024-09-21 20.58.29.png]]<br>脏读，read uncommitted<br>例如：事务A先读取了数据，然后事务B修改了数据但没提交，这时A再读取，读取的是B修改后的数据，这个叫read uncommitted</p>
+<p>不可重复读<br>例如：事务A先读取了数据，然后事务B修改了数据，然后提交了，A再读取，发现数据不一样了，也就是在一个事务中，读取了两次数据，结果不一样，这个叫read committed</p>
+<p>幻读：<br>例如：事务A读取一条当前不存在的数据，找不到，然后事务B插入了这条数据，并且提交了，这时事务A想要插入这条数据，不能插入，但是读取还是读不到，</p>
+<p>Serializable 是串行化，事务A在进行的时候，事务B的行为会阻塞（等待事务A完成）</p>
+<p>![[截屏2024-09-21 21.32.24.png]]</p>
+<p>![[截屏2024-09-21 21.35.21.png]]<br>注意index索引在引擎层，表示不同的引擎有不同的处理索引的方式<br>![[截屏2024-09-21 21.38.09.png]]<br>每个数据库表可以有不同的引擎<br>show engine;  查看当前数据库支持的存储引擎</p>
+<p>![[截屏2024-09-21 21.46.00.png]]</p>
+<p>![[截屏2024-09-21 21.50.47.png]]</p>
+<p>![[截屏2024-09-21 21.53.09.png]]</p>
+<p>![[截屏2024-09-21 21.54.24.png]]<br>![[截屏2024-09-21 21.55.00.png]]</p>
+<p>![[截屏2024-09-21 21.57.08.png]]<br>MyISAM被NoSQL数据库MongoDB取代，MEMORY被Redis取代</p>
+<p>![[截屏2024-09-22 09.07.10.png]]<br>![[截屏2024-09-22 09.11.30.png]]</p>
+<p>![[截屏2024-09-22 09.17.49.png]]</p>
+<p>![[截屏2024-09-22 09.19.58.png]]</p>
+<p><a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/BTree.html">https://www.cs.usfca.edu/~galles/visualization/BTree.html</a><br>节点中key的个数大于设置的最大度数后，中间key向上分裂</p>
+<p>![[截屏2024-09-22 09.40.12.png]]<br>数据只存在叶子节点，叶子节点是一个单向链表</p>
+<p>![[截屏2024-09-22 09.44.31.png]]</p>
+<p>![[截屏2024-09-22 09.55.07.png]]</p>
+<p>![[截屏2024-09-22 09.56.54.png]]</p>
+<p>![[截屏2024-09-22 09.57.47.png]]</p>
+<p>![[截屏2024-09-22 09.59.16.png]]</p>
+<p>![[截屏2024-09-22 10.03.37.png]]<br>先在name对应的二级索引里面查找，找到之后再到聚集索引里面查找</p>
+<p>下面的没看懂<br>![[截屏2024-09-22 10.30.20.png]]</p>
+<p>![[截屏2024-09-22 10.32.46.png]]</p>
+<p>![[截屏2024-09-22 10.56.26.png]]</p>
+<p>![[截屏2024-09-22 10.58.56.png]]</p>
+<p><code>show variables like &#39;slow_query_log&#39;;</code> 查看慢查询日志是否为开</p>
+<p>![[截屏2024-09-22 16.32.09.png]]<br>这个是查看是否支持，具体开没开要用：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">select</span> @<span class="hljs-variable">@profiling</span>;<br><span class="hljs-attribute">set</span> profiling = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+
+<p>![[截屏2024-09-22 16.35.22.png]]</p>
+<p>![[截屏2024-09-22 19.58.39.png]]</p>
+<p>![[截屏2024-09-22 20.11.14.png]]<br>重点关注type，<br>![[截屏2024-09-22 20.14.10.png]]</p>
+<p>![[截屏2024-09-22 20.28.48.png]]</p>
+<p>![[截屏2024-09-22 20.39.03.png]]<br>如果用大于等于就没有这个问题<br>![[截屏2024-09-22 20.42.33.png]]</p>
+<p>![[截屏2024-09-22 20.44.56.png]]<br>有隐式类型转换<br>![[截屏2024-09-22 20.47.03.png]]</p>
+<p>![[截屏2024-09-22 20.50.16.png]]</p>
+<p>![[截屏2024-09-22 20.53.56.png]]<br>感觉找少部分数据会走索引</p>
+<p>![[截屏2024-09-22 21.02.19.png]]</p>
+<p>![[截屏2024-09-22 21.04.59.png]]</p>
+<p>![[截屏2024-09-22 21.09.05.png]]<br>![[截屏2024-09-22 21.12.55.png]]</p>
+<p>![[截屏2024-09-22 21.14.57.png]]</p>
+<p>![[截屏2024-09-22 21.16.38.png]]</p>
+<p>![[截屏2024-09-22 21.22.05.png]]<br>![[截屏2024-09-22 21.26.01.png]]<br>上图查询前5位，lvbu6，找到后回表查询，得到一条行数据。需要检查整个的email是否匹配，</p>
+<p>![[截屏2024-09-22 21.36.56.png]]</p>
+<p>![[截屏2024-09-22 21.38.28.png]]<br>先按phone排序，如果phone一样，再按name排序</p>
+<p>![[截屏2024-09-22 21.48.26.png]]</p>
+<p>![[截屏2024-09-22 22.15.34.png]]</p>
+<p>![[截屏2024-09-22 22.17.28.png]]<br>![[截屏2024-09-22 22.18.07.png]]<br>![[截屏2024-09-22 22.32.22.png]]<br>![[截屏2024-09-22 22.30.58.png]]<br>![[截屏2024-09-22 22.34.19.png]]<br>![[截屏2024-09-22 22.50.47.png]]</p>
+<p>![[截屏2024-09-22 22.54.40.png]]</p>
+<p>![[截屏2024-09-22 23.16.57.png]]</p>
+<p>![[截屏2024-09-22 23.29.42.png]]<br>sql优化没太看懂，主要是针对索引进行优化的</p>
+<p>![[截屏2024-09-23 06.31.16.png]]</p>
+<p>![[截屏2024-09-23 06.36.20.png]]</p>
+<p>with cascaded check option 阻止了添加数据，添加后在视图中看不到的数据</p>
+<p>![[截屏2024-09-23 07.13.23.png]]</p>
+<p>![[截屏2024-09-23 07.20.01.png]]<br>local 也会对它基于的视图进行检查，cascaded会将检查传递给其他视图，而local不会传递，只是检查</p>
+<p>![[截屏2024-09-23 07.22.18.png]]</p>
+<p>![[截屏2024-09-23 07.26.24.png]]</p>
+<p>![[截屏2024-09-23 07.34.08.png]]</p>
+<p>![[截屏2024-09-23 07.36.44.png]]</p>
+<p>![[截屏2024-09-23 07.39.00.png]]</p>
+<p>![[截屏2024-09-23 08.12.39.png]]</p>
+<p>![[截屏2024-09-23 08.16.10.png]]<br>默认是session级别<br>图片中有错误：select @@global.xxx; 注意global与变量名之间是“点”<br>mysql服务重启后会重置系统变量，想要永久改变，需要修改/etc/my.cnf</p>
+<p>![[截屏2024-09-23 08.33.51.png]]<br>自定义的变量不需要声明或初始化，直接用就是null</p>
+<p>![[截屏2024-09-23 08.40.12.png]]</p>
+<p>![[截屏2024-09-23 08.43.44.png]]</p>
+<p>![[截屏2024-09-23 08.47.02.png]]</p>
+<p>![[截屏2024-09-23 09.05.28.png]]</p>
+<p>![[截屏2024-09-23 09.08.33.png]]</p>
+<p>![[截屏2024-09-23 09.13.11.png]]</p>
+<p>![[截屏2024-09-23 09.16.13.png]]</p>
+<p>![[截屏2024-09-23 09.34.50.png]]</p>
+<p>![[截屏2024-09-23 09.44.45.png]]</p>
+<p>![[截屏2024-09-23 09.50.17.png]]</p>
+<p>![[截屏2024-09-23 09.56.18.png]]<br>行级和语句级的区别：例如，如果一个update更新了5行，则要触发5次</p>
+<p>![[截屏2024-09-23 10.00.25.png]]</p>
+<p>![[截屏2024-09-23 10.32.53.png]]</p>
+<p>![[截屏2024-09-23 10.35.01.png]]</p>
+<p>![[截屏2024-09-23 10.36.34.png]]<br>![[截屏2024-09-23 10.41.11.png]]</p>
+<p>![[截屏2024-09-23 10.50.22.png]]</p>
+<p>![[截屏2024-09-23 10.52.28.png]]<br>![[截屏2024-09-23 10.58.42.png]]<br>读锁，只能读不能写，可以阻塞其他客户端的写，其他客户端可以读<br>写锁，当前客户端可以读可以写，其他客户端不能读不能写</p>
+<p>元数据可以简单理解为表结构<br>![[截屏2024-09-23 14.59.03.png]]</p>
+<p>![[截屏2024-09-23 15.14.40.png]]</p>
+<p>意向锁解决的是在innodb引擎中，行锁与表锁的冲突问题</p>
+<p>![[截屏2024-09-23 15.18.54.png]]</p>
+<p>![[截屏2024-09-23 15.19.29.png]]</p>
+<p>![[截屏2024-09-23 15.26.40.png]]</p>
+<p>![[截屏2024-09-23 15.27.57.png]]<br>![[截屏2024-09-23 15.28.14.png]]</p>
+<p>![[截屏2024-09-23 15.30.29.png]]</p>
+<p>![[截屏2024-09-23 15.41.59.png]]</p>
+<p>![[截屏2024-09-23 15.50.44.png]]</p>
+<p>![[截屏2024-09-23 15.56.55.png]]</p>
+<p>![[截屏2024-09-23 15.58.39.png]]</p>
+<p>![[截屏2024-09-23 16.00.58.png]]</p>
+<p>![[截屏2024-09-23 16.03.12.png]]<br>![[截屏2024-09-23 16.04.30.png]]</p>
+<p>![[截屏2024-09-23 16.06.45.png]]</p>
+<p>![[截屏2024-09-23 16.09.41.png]]<br>![[截屏2024-09-23 16.11.41.png]]</p>
+<p>![[截屏2024-09-23 16.13.08.png]]</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
