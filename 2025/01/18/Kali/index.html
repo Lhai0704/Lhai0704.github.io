@@ -24,7 +24,7 @@
 <meta property="og:description" content="报错安装snort报错：Unable to locate package snort解决方案： 1234sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.listdeb http:&#x2F;&#x2F;http.us.debian.org&#x2F;debian&#x2F; bullseye non-free contrib mainsudo apt-get updatesudo apt-get install snort 来源">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-18T08:24:28.041Z">
-<meta property="article:modified_time" content="2025-01-19T16:25:42.915Z">
+<meta property="article:modified_time" content="2025-01-20T14:59:24.649Z">
 <meta property="article:author" content="LuHai">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          2k 字
         
       </span>
     
@@ -218,7 +218,7 @@
         
         
         
-          12 分钟
+          17 分钟
         
       </span>
     
@@ -274,7 +274,9 @@
 <p>linux有一个动态主机配置协议dynamic host configuration protocol DHCP服务器。DHCP服务器为子网上的所有系统分配IP地址，并保留任何时候将哪个IP地址分配给哪台计算机的日志文件。有助于攻击后追踪黑客。<br><code>dhclient eth0</code>从指定的网络接口eth0发送DHCPDISCOVER请求，然后从DHCP服务器接收DHCPOFFER并使用dhcp请求向DHCP服务器分配IP。</p>
 <p>DNS：domain name system域名系统。旨在将域名转换为IP地址。dig命令，收集有关目标域的DNS信息，此信息可能包含目标名称服务器nameserver（将目标名称转换为IP地址的服务器）的IP地址，目标的电子邮件服务器以及可能的子域和IP地址。<br><code>dig hackers-arise.com ns</code>。ns表示nameserver。mx选项表示mail exchange server，查看连接到域的电子邮件服务器地址。<br>最常见的DNS服务器是伯克利internet name domain BIND。<br>在/etc/resolv.conf中修改DNS服务器。<code>echo &quot;nameserver 8.8.8.8&quot; &gt; /etc/resolv.conf</code><br>注：如果使用的DHCP地址，而且DHCP提供了DNS设置，则DHCP服务器会在续订DHCP地址时替换文件内容。</p>
 <p>/etc/hosts文件与DNS类似，指定自己的IP地址-域名映射。这对于劫持局域网上的TCP连接以使用dnsspoof等工具将流量定向到恶意web服务器非常有用。确保在IP地址和域名之间按Tab而不是空格。了解dnsspoof和Ettercap等工具，可以使用hosts文件将LAN上访问某网站到任何流量定向到其他服务器。</p>
-<h2 id="Snort"><a href="#Snort" class="headerlink" title="Snort"></a>Snort</h2><p>世界上最好的网络入侵检测系统network intrusion detection system NIDS，通常用于检测黑客的入侵，如果想成为成功的黑客，必须熟悉NIDS如何阻止攻击，以及如何滥用NIDS来避免被发现。</p>
+<h2 id="软件管理"><a href="#软件管理" class="headerlink" title="软件管理"></a>软件管理</h2><p>apt-get<br><code>apt-cache search keyword</code>，检查软件包是否在自己的存储库中。<br><code>apt-get install packagename</code>，安装软件包<br><code>apt-get remove packagename</code>，删除软件包。仅用remove不会删除配置文件，重新安装时无需重新配置。<code>apt-get purge packagename</code>，删除软件包及其配置文件。<br><code>apt-get update</code>，更新所有软件包。更新与升级有区别：更新只是更新软件包列表。<br><code>apt-get upgrade</code>，升级现有软件包，需要使用root身份。<br>存储库：保存特定Linux发行版软件的服务器。可以在kali中添加几个备份存储库，以免在kali存储库中找不到特定软件。/etc/apt/sources.list为存储库文件，修改此文件来指示从哪些存储库下载文件。注：解决报错中的第一个问题的方案就是添加一个存储库。<br>基于GUI的安装工具：Synaptic和Gdebi</p>
+<h2 id="文件和目录的权限控制"><a href="#文件和目录的权限控制" class="headerlink" title="文件和目录的权限控制"></a>文件和目录的权限控制</h2><p>可以为”文件的所有者”，”特定用户组”，”所有其他用户”指定权限。<br>特定级别的权限：r读取（打开和查看文件），w写入（查看和编辑文件），x执行文件（不一定查看或编辑）。<br>chown：change owner修改文件所有者<br>chgrp：change group更改文件所有权到另一个组<br>chmod：change mode修改权限，可以用十进制的方式，每个数字表示一组rwx权限。也可以用UGO的方式，u表示用户，g表示组，o表示其他人。<code>chmod u-w,o+x filename</code>，删除用户的写权限，添加其他用户的执行权限。<br>Linux自动为所有文件和目录分配默认权限，分别为666和777。也就是说，默认情况下，无法在下载文件后立即执行文件。<br>umask：修改默认权限，umask是三位数字，创建文件或目录时，权限为默认值减umask。在kali中，umask预配置为022。每个用户可以在/home/username/.profile修改自己的umask。<br>三种特殊权限：SUID，具有SUID的文件始终以拥有该文件的用户身份执行，在常规权限前添4。SGID，如果在文件上设置，允许以拥有该文件的组身份执行该文件，类似于SUID。如果在目录上设置，则目录中创建的任何文件的组所有权都将设置为目录所有者的组所有权，在常规权限前添2。Sticky Bit已经过时<br><code>find / -user root -perm -4000</code>，查找有SUID的文件。<br>第一组权限用s代替x，表示设置了SUID。这意味着运行该文件的任何人都拥有root用户的权限。</p>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h2 id="Snort"><a href="#Snort" class="headerlink" title="Snort"></a>Snort</h2><p>世界上最好的网络入侵检测系统network intrusion detection system NIDS，通常用于检测黑客的入侵，如果想成为成功的黑客，必须熟悉NIDS如何阻止攻击，以及如何滥用NIDS来避免被发现。</p>
 <h2 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h2><p>最流行的渗透测试和黑客框架。<br>/usr/share/wordlists/metasploit。包含多个单词列表，用于暴力破解密码。</p>
 
                 
