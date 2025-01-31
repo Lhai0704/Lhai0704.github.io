@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuHai">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ls-a 表示all，列出隐藏文件-l 用列表形式展示-h 与-l搭配，便于展示文件大小 cdchange directory不用参数的话切换到默认目录：&#x2F;home&#x2F;luhai pwdprint work directory 特殊路径符一个点.  当前目录两个点..  上一级目录波浪~  表示HOME目录回退三级：cd ..&#x2F;..&#x2F;.. mkdirmake directory-p  自动创建不存在">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="http://lhai0704.github.io/Linux.html">
+<meta property="og:site_name" content="LuHai的个人博客">
+<meta property="og:description" content="ls-a 表示all，列出隐藏文件-l 用列表形式展示-h 与-l搭配，便于展示文件大小 cdchange directory不用参数的话切换到默认目录：&#x2F;home&#x2F;luhai pwdprint work directory 特殊路径符一个点.  当前目录两个点..  上一级目录波浪~  表示HOME目录回退三级：cd ..&#x2F;..&#x2F;.. mkdirmake directory-p  自动创建不存在">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-25T04:45:16.814Z">
+<meta property="article:modified_time" content="2024-09-25T08:57:25.602Z">
+<meta property="article:author" content="LuHai">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>page.title - LuHai的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhai0704.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhai&#39;blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <p>ls<br>-a 表示all，列出隐藏文件<br>-l 用列表形式展示<br>-h 与-l搭配，便于展示文件大小</p>
+<p>cd<br>change directory<br>不用参数的话切换到默认目录：/home/luhai</p>
+<p>pwd<br>print work directory</p>
+<p>特殊路径符<br>一个点.  当前目录<br>两个点..  上一级目录<br>波浪~  表示HOME目录<br>回退三级：cd ../../..</p>
+<p>mkdir<br>make directory<br>-p  自动创建不存在的父目录</p>
+<p>touch<br>创建文件<br>cat<br>查看文件<br>more<br>查看文件，支持翻页。空格翻页，q退出</p>
+<p>cp<br>copy，复制<br>-r  复制文件夹，表示递归</p>
+<p>mv<br>move，移动<br>可以用来改名</p>
+<p>rm<br>remove，删除<br>-r  删除文件夹<br>-f  force，强制删除<br>rm命令支持通配符*，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">test</span>*：以<span class="hljs-built_in">test</span>开头的<br>*<span class="hljs-built_in">test</span>：以<span class="hljs-built_in">test</span>结尾的<br>*<span class="hljs-built_in">test</span>*：包含<span class="hljs-built_in">test</span>的<br></code></pre></td></tr></table></figure>
+<p>注：rm -rf / 和rm -rf /* 有区别：前一个删除的是根目录，后一个删除的是根目录下的所有文件</p>
+<p>命令其实是二进制可执行程序</p>
+<p>which<br>查看命令所在的位置</p>
+<p>find<br>按文件名查找文件：<br>find 起始路径 -name 文件名（用双引号）<br>按文件大小查找文件：<br>find 起始路径 -size +|-n[kMG]<br>+或-表示大于或小于<br>n是大小数字<br>kMG是单位<br>例如：查找大于1GB的文件：find / -size +1G</p>
+<p>grep<br>从文件中通过关键字过滤文件行<br>-n  显示行号<br>grep 关键字 文件路径<br>文件路径可以作为内容输入端口</p>
+<p>wc<br>文件内容统计<br>-c  byte数量<br>-m  字符数量<br>-l  行数<br>-w 单词数量<br>文件路径可以作为内容输入端口</p>
+<p>管道符 ｜<br>将｜左边的结果作为右边的输入</p>
+<p>echo<br>在命令行输出内容</p>
+<p>反引号<br>包围的内容作为命令执行</p>
+<p>重定向符</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">&gt; <span class="hljs-symbol">:</span>将左边命令的结果，覆盖到右边的文件中<br><span class="hljs-meta prompt_">&gt;&gt;</span> <span class="hljs-symbol">:</span>将左边命令的结果，追加到右边的文件中<br><br></code></pre></td></tr></table></figure>
+
+<p>tail<br>查看文件尾部<br>-num 例如tail -5 text 查看最后5行<br>-f 持续追踪</p>
+<p>vi/vim<br>三种工作模式：命令，输入，底线命令</p>
+<p>su - root 切换为root用户<br>switch user<br>中间的 - 是可选的，表示在切换用户后加载环境变量<br>注：在我的系统中su - root报错：Authentication failure。应该使用sudo -i，root账户在ubuntu中默认是disabled的，所以没有root密码<br>用 exit 退回上一个用户</p>
+<p>sudo<br>为一条命令授权以root身份运行<br>不是所有用户都能用sudo，需要为普通用户配置sudo认证：在root中输入visudo，在文件最后添加：<br>testUserName ALL=(ALL)  NOPASSWD:ALL</p>
+<p>groupadd 组名 和 groupdel 组名 创建和删除用户组<br>useradd 创建用户，-g 指定用户的组，-d 指定用户的HOME目录<br>userdel 删除用户，-r 删除HOME目录<br>id 用户名，查看用户所属的组<br>usermod -aG 用户组 用户名，修改用户所属的组</p>
+<p>getent<br>查看系统中的用户<br>用户名：密码：用户id：组id：描述信息：HOME目录：执行终端（默认bash）<br>getent group<br>查看系统中的组</p>
+<p>用ll或ls -l 查看文件信息<br>第一部分有十个位，例如drwxr-xr-x<br>第一位：d表示文件夹，-表示文件，l表示软链接<br>第2、3、4位：所属用户权限<br>第5、6、7位：所属用户组权限<br>第8、9、10位：其他用户权限<br>r是读，可以看文件内容，可以看文件夹里面有什么，注意只能看文件夹，不能cd进去<br>w是写，可以修改文件内容，可以在文件夹内创建，删除，改名<br>x是修改execute，可以执行文件，可以cd进文件夹</p>
+<p>chmod<br>修改权限<br>-R 对文件夹内的所有文件执行操作<br>例如：chmod u=rwx,g=rx,o=r test.txt<br>快捷写法：chmod 751 test.txt<br>r是4，w是2，x是1</p>
+<p>chown<br>修改文件所属的用户或用户组，只能由root执行<br>chown 用户：用户组 文件名<br>-R 对文件夹内的所有文件执行操作</p>
+<p>ctrl+c可以停止程序的运行。也可以不管正在输入的命令，重新开始输入<br>ctrl+d退出当前用户的登录，有时可以退出某些程序，例如python<br>history命令，查看历史输入的命令<br>感叹号+少量字符，搜索最近的以少量字符开头的命令并执行<br>ctrl+r 搜索匹配历史命令，用左右键确认<br>ctrl+a 跳到命令开头<br>ctrl+e 跳到命令结尾<br>ctrl+键盘左右键 跳过一个单词<br>ctrl+l或clear 清屏</p>
+<p>centos使用yum安装rpm程序，ubuntu使用apt安装deb程序<br>-y 表示自动确认<br>install，remove，search</p>
+<p>systemctl 控制服务的开启，关闭，状态查看，控制开机是否自启<br>start，stop，status，enable，disable<br>系统内置的服务举例：<br>NetworkManager，主网络服务<br>network，副网络服务<br>firewalld，防火墙<br>sshd，ssh服务</p>
+<p>ln<br>创建软链接，类似Windows中的快捷方式<br>ln -s 被链接的 目的地</p>
+<p>date<br>返回时间<br>%Y 年<br>%y 年份后两位<br>%m 月<br>%d 日<br>%H 小时<br>%M 分钟<br>%S 秒<br>%s 时间戳<br>用法：date +%Y年%m月%d日：输出：2024年09月20日<br>如果格式化字符串里面有空格，用双引号包含从加号之后的部分<br>-d 用于日期计算，支持：year, month, day, hour, minute, second<br>例如：date -d “+1 day +1 month” +%Y-%m-%d</p>
+<p>ifconfig 或者 ip a<br>用来查看ip地址</p>
+<p>hostname<br>查看本机名称</p>
+<p>域名解析<br>输入域名，先在本机的hosts 文件中查找，然后在DNS服务器里查找<br>Linux中的/etc/hosts文件中加入：ip地址 主机名<br>这样就可以通过主机名访问了，就不用输入ip地址了</p>
+<p>虚拟机的ip地址是通过DHCP服务获取的<br>DHCP是动态获取ip地址，</p>
+<p>ping<br>检查服务器是否可联通<br>ping [-c num] ip或主机名<br>-c 检查几次</p>
+<p>wget<br>非交互式的文件下载器<br>-b 后台下载，日志会写入到当前工作目录的wget-log文件中，可以用tail -f wget-log来查看</p>
+<p>curl<br>发送http网络请求，<br>-O 用于下载文件<br>curl cip.cc 可以查看公网ip</p>
+<p>Linux支持65535个端口<br>1-1023:公认端口，系统内置或知名程序，ssh22，http443<br>1024-49151: 注册端口，<br>49152-65535:动态端口，临时使用</p>
+<p>nmap<br>查看端口占用情况<br>nmap 127.0.0.1</p>
+<p>netstat<br>查看指定端口<br>netstat -anp | grep 22</p>
+<p>程序运行后，操作系统会将程序注册为系统中的一个进程<br>ps<br>查看进程信息<br>-e 显示全部进程<br>-f 完全格式化<br>UID：进程所属的用户ID<br>PID：进程ID<br>PPID：进程的父ID（启动此进程的其他进程<br>C：CPU占用率<br>STIME：启动时间<br>TTY：启动此进程的终端序号，如果是？表示非终端启动<br>TIME：占用CPU时间<br>CMD：进程对应的名称或启动路径或启动命令</p>
+<p>kill<br>关闭进程<br>-9 强制关闭</p>
+<p>top<br>查看cpu，内存使用情况，5秒刷新一次<br>第一行，load_average 平均负载 1，5，15分钟。如果为1 表示一个cpu百分百繁忙，如果为4 表示4个cpu百分百繁忙<br>第三行：us用户，sy系统，ni高优先级进程，id空闲，wa IO等待，hi硬件中断，si软件中断，st强制等待<br>第四行mem：物理内存<br>第五行swap：虚拟内存<br>下面的表格中：<br>PR：进程优先级，越小越高<br>NI：负数表示高优先级，正数表示低优先级<br>VIRT：虚拟内存<br>RES：物理内存<br>SHR：共享内存<br>S：进程状态<br>TIME+：进程使用CPU时间总计</p>
+<p>df<br>查看磁盘使用情况<br>-h 更人性化</p>
+<p>iostat<br>查看cpu，磁盘的相关信息<br>-x 显示更多信息<br>其中磁盘部分：tps：设备每秒传输次数</p>
+<p>sar<br>查看网络统计数据<br>sar -n DEV 查看网络接口</p>
+<p>env<br>查看环境变量，是键值对，中间是等号，右侧由冒号分隔<br>系统执行ls这类命令时，在环境变量里面的PATH里面找这个命令对应的二进制程序<br>也就是说：PATH记录了系统执行命令的搜索路径</p>
+<p>$符号用于获取环境变量的值<br>echo $PATH</p>
+<p>设置环境变量：<br>临时：<br>export 名=值<br>永久：<br>当前用户：在<del>/.bashrc文件中<br>所有用户：在</del>/etc/profile文件中<br>通过source 配置文件名 来刷新</p>
+<p>export PATH=$PATH:/程序名</p>
+<p>%% rz和sz<br>上传和下载 %%</p>
+<p>tar归档文件<br>只是简单的封装，没有太多体积的减少<br>gz压缩文件<br>使用gzip压缩算法进行压缩</p>
+<p>tar<br>-c 创建压缩文件<br>-v 显示进度<br>-x 解压模式<br>-f 要压缩或解压的文件，-f必须位于最后一个参数<br>-z gzip模式，一般位于第一个参数位置<br>-C 解压目的地</p>
+<p>压缩时常用组合：<br>tar -cvf test.tar 1.txt 2.txt 3.txt<br>tar -zcvf text.tar.gz 1.txt 2.txt 3.txt</p>
+<p>解压时常用组合<br>tar -xvf name.tar<br>tar -xvf name.tar -C /…<br>tar -zxvf name.tar.gz</p>
+<p>zip<br>压缩文件<br>-r 被压缩文件包含文件夹时<br>unzip<br>解压文件<br>-d 指定目的地</p>
+<p>scp<br>文件传输<br>SSH文件传输:</p>
+<ul>
+<li>在Linux电脑上确保已安装并运行SSH服务器。</li>
+<li>在Mac上打开终端,使用scp命令传输文件: <code>scp /path/to/local/file username@linux_ip_address:/path/to/destination</code></li>
+</ul>
+<p>git<br>sudo apt install git</p>
+<ol>
+<li>git config –global user.name “==Your Name==”</li>
+<li>git config –global user.email “<a href="mailto:youremail@domain.com">youremail@domain.com</a>“</li>
+<li>git config –list<br>生成ssh密钥<br>ssh-keygen -t ed25519 -C “您的GitHub邮箱”<br>添加SSH密钥到SSH代理:<br>eval “$(ssh-agent -s)”<br>ssh-add ~/.ssh/id_ed25519<br>复制公钥：<br>cat ~/.ssh/id_ed25519.pub<br>在github设置中添加ssh key<br>测试链接：<br>ssh -T <a href="mailto:git@github.com">git@github.com</a></li>
+</ol>
+<p>通过appimage安装软件<br>需要安装FUSE，然后需要下面的命令<br>sudo add-apt-repository universe</p>
+<ol>
+<li>在 Ubuntu 中，软件仓库被分为多个部分，其中包括：<ul>
+<li><strong>main</strong>：包含 Ubuntu 开发者完全支持的软件。</li>
+<li><strong>universe</strong>：包含由社区维护的开源软件，虽然不如 main 中的软件那么受支持，但也是官方认可的开源软件库。<br>因此，<code>add-apt-repository universe</code> 命令的作用是向你的系统中添加 “universe” 仓库，使得你能够从该仓库中安装社区维护的软件包。<br>在添加此仓库后，系统将有更多的可用软件可以通过 <code>apt</code> 命令进行安装。</li>
+</ul>
+</li>
+</ol>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

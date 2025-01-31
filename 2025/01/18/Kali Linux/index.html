@@ -19,12 +19,12 @@
     <meta name="description" content="报错安装snort报错：Unable to locate package snort解决方案： 1234sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.listdeb http:&#x2F;&#x2F;http.us.debian.org&#x2F;debian&#x2F; bullseye non-free contrib mainsudo apt-get updatesudo apt-get install snort 来源">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LuHai的个人博客">
-<meta property="og:url" content="http://lhai0704.github.io/2025/01/18/Kali/index.html">
+<meta property="og:url" content="http://lhai0704.github.io/2025/01/18/Kali%20Linux/index.html">
 <meta property="og:site_name" content="LuHai的个人博客">
 <meta property="og:description" content="报错安装snort报错：Unable to locate package snort解决方案： 1234sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.listdeb http:&#x2F;&#x2F;http.us.debian.org&#x2F;debian&#x2F; bullseye non-free contrib mainsudo apt-get updatesudo apt-get install snort 来源">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-18T08:24:28.041Z">
-<meta property="article:modified_time" content="2025-01-20T14:59:24.649Z">
+<meta property="article:modified_time" content="2025-01-25T04:56:08.293Z">
 <meta property="article:author" content="LuHai">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          3.5k 字
         
       </span>
     
@@ -218,7 +218,7 @@
         
         
         
-          17 分钟
+          30 分钟
         
       </span>
     
@@ -265,7 +265,9 @@
 <p>来源 ：<a target="_blank" rel="noopener" href="https://www.reddit.com/r/Kalilinux/comments/wg3gkn/snort_on_kali_linux_will_not_install/">https://www.reddit.com/r/Kalilinux/comments/wg3gkn/snort_on_kali_linux_will_not_install/</a></p>
 <h2 id="Linux常用指令"><a href="#Linux常用指令" class="headerlink" title="Linux常用指令"></a>Linux常用指令</h2><p>pwd：present working directory 查看当前工作目录<br>whoami：查看登录用户<br>cd：change directory 切换目录。可以用<code>cd .. ..</code>来向上两层<br>ls：list 查看目录内容，-l 表示long 显示文件详细信息，-a 查看隐藏文件<br><code>-- help</code>：几乎所有命令都有帮助文件，Linux约定在单词前加两个破折号，在字母前加单破折号。也可以用<code>-?</code>查看帮助。<br>man：多数命令都有手册<br>locate：后跟一个关键词，遍历整个文件系统查找。结果可能很多而且通常每天更新一次。<br>whereis：只返回二进制文件和man页<br>which：返回PATH变量中二进制文件的位置<br>find：最强大最灵活的搜索程序，基本语法：<code>find directory options expression</code>。例如从根目录搜索名为apache2的文件：<code>find / -type f -name apache2</code>。f表示普通文件。仅显示确切的匹配项，可以加上通配符。<br>通配符：<code>* . ? []</code></p>
 <p>grep：过滤器，输出从一条命令通过管道（<code>｜</code>）传输到另一个命令时，通常会使用grep。<br>ps：processes 显示进程信息。ps aux显示运行的所有进程。<code>ps aux ｜ grep apache2</code>显示所有服务然后将输出发送到grep。也可以cat输出文件内容后用grep过滤。关键词</p>
-<p>cat：concatenate 显示文件内容以及创建小文件。cat后跟文件名会显示文件内容，cat后加重定向”<code>&gt;</code>“创建文件，用两个重定向符”<code>&gt;&gt;</code>“，追加内容。<br>touch：最初的开发目的是更改文件的某些详细信息，例如创建或修改的时间。如果文件名不存在，创建该空文件。<br>mkdir：创建目录<br>cp：复制文件<br>mv：移动文件，也可以重命名文件<br>rm：删除文件，-r 删除整个目录<br>rmdir：删除空目录<br>head：查看文件前10行，-20 显示前20行。<br>tail：类似于head，查看后10行，-20 显示后20行。<br>nl：显示文件行号</p>
+<p>cat：concatenate 显示文件内容以及创建小文件。cat后跟文件名会显示文件内容，cat后加重定向”<code>&gt;</code>“创建文件，用两个重定向符”<code>&gt;&gt;</code>“，追加内容。<br>touch：最初的开发目的是更改文件的某些详细信息，例如创建或修改的时间。如果文件名不存在，创建该空文件。<br>mkdir：创建目录<br>cp：复制文件<br>mv：移动文件，也可以重命名文件<br>rm：删除文件，-r 删除整个目录<br>rmdir：删除空目录</p>
+<p>echo $SHELL：查看正在使用的shell。如果是bash，编辑<code>~/.bash_profile</code> 或 <code>~/.bashrc</code>。如果是zsh，编辑 <code>~/.zshrc</code>。最后用source后跟编辑的配置文件来重新加载配置文件。</p>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>head：查看文件前10行，-20 显示前20行。<br>tail：类似于head，查看后10行，-20 显示后20行。<br>nl：显示文件行号</p>
 <p>如果想看一个文件的第507-512行：<code>nl -n+507 filename | head -n 6</code>。</p>
 <p>sed：搜索文本出现次数，并且对其执行某些操作。<code>sed s/mysql/MYSQL/g filename &gt; filename2</code>，s命令执行搜索，两个关键词，g表示全局替换，结果保存在一个新文件中。去掉g可以只替换第一个匹配项。g换成2可以只替换第二个匹配项。</p>
 <p>more：查看文件内容，一次显示一页。<br>less：与more类似，按下斜杠/进行搜索。按下n查看下一个匹配项。</p>
@@ -276,8 +278,20 @@
 <p>/etc/hosts文件与DNS类似，指定自己的IP地址-域名映射。这对于劫持局域网上的TCP连接以使用dnsspoof等工具将流量定向到恶意web服务器非常有用。确保在IP地址和域名之间按Tab而不是空格。了解dnsspoof和Ettercap等工具，可以使用hosts文件将LAN上访问某网站到任何流量定向到其他服务器。</p>
 <h2 id="软件管理"><a href="#软件管理" class="headerlink" title="软件管理"></a>软件管理</h2><p>apt-get<br><code>apt-cache search keyword</code>，检查软件包是否在自己的存储库中。<br><code>apt-get install packagename</code>，安装软件包<br><code>apt-get remove packagename</code>，删除软件包。仅用remove不会删除配置文件，重新安装时无需重新配置。<code>apt-get purge packagename</code>，删除软件包及其配置文件。<br><code>apt-get update</code>，更新所有软件包。更新与升级有区别：更新只是更新软件包列表。<br><code>apt-get upgrade</code>，升级现有软件包，需要使用root身份。<br>存储库：保存特定Linux发行版软件的服务器。可以在kali中添加几个备份存储库，以免在kali存储库中找不到特定软件。/etc/apt/sources.list为存储库文件，修改此文件来指示从哪些存储库下载文件。注：解决报错中的第一个问题的方案就是添加一个存储库。<br>基于GUI的安装工具：Synaptic和Gdebi</p>
 <h2 id="文件和目录的权限控制"><a href="#文件和目录的权限控制" class="headerlink" title="文件和目录的权限控制"></a>文件和目录的权限控制</h2><p>可以为”文件的所有者”，”特定用户组”，”所有其他用户”指定权限。<br>特定级别的权限：r读取（打开和查看文件），w写入（查看和编辑文件），x执行文件（不一定查看或编辑）。<br>chown：change owner修改文件所有者<br>chgrp：change group更改文件所有权到另一个组<br>chmod：change mode修改权限，可以用十进制的方式，每个数字表示一组rwx权限。也可以用UGO的方式，u表示用户，g表示组，o表示其他人。<code>chmod u-w,o+x filename</code>，删除用户的写权限，添加其他用户的执行权限。<br>Linux自动为所有文件和目录分配默认权限，分别为666和777。也就是说，默认情况下，无法在下载文件后立即执行文件。<br>umask：修改默认权限，umask是三位数字，创建文件或目录时，权限为默认值减umask。在kali中，umask预配置为022。每个用户可以在/home/username/.profile修改自己的umask。<br>三种特殊权限：SUID，具有SUID的文件始终以拥有该文件的用户身份执行，在常规权限前添4。SGID，如果在文件上设置，允许以拥有该文件的组身份执行该文件，类似于SUID。如果在目录上设置，则目录中创建的任何文件的组所有权都将设置为目录所有者的组所有权，在常规权限前添2。Sticky Bit已经过时<br><code>find / -user root -perm -4000</code>，查找有SUID的文件。<br>第一组权限用s代替x，表示设置了SUID。这意味着运行该文件的任何人都拥有root用户的权限。</p>
-<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h2 id="Snort"><a href="#Snort" class="headerlink" title="Snort"></a>Snort</h2><p>世界上最好的网络入侵检测系统network intrusion detection system NIDS，通常用于检测黑客的入侵，如果想成为成功的黑客，必须熟悉NIDS如何阻止攻击，以及如何滥用NIDS来避免被发现。</p>
-<h2 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h2><p>最流行的渗透测试和黑客框架。<br>/usr/share/wordlists/metasploit。包含多个单词列表，用于暴力破解密码。</p>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>进程是一个正在运行和使用资源的程序。ps命令查看运行的进程。创建进程时按顺序为每个进程分配一个唯一的进程ID（PID）。加上选项aux，显示所有用户在系统上运行的所有进程，加选项-ef输出类似。列名的解释：user，调用进程的用户。command，启动进程的命令名称。<br>ps命令默认按启动顺序也就是PID升序排列的。<br>top命令可以按照使用资源排序。按H或者？显示交互式命令列表。<br>nice命令建议修改进程优先级。范围从-20到+19，默认为0。<code>nice -n -10 processName</code>，将nice值减10，提高优先级，<code>nice -n 10 processName</code>，将nice值加10，对其他用户和进程友好。<code>renice 20 PID</code>，修改PID的nice值。<br>kill：后面跟<code>-signal</code>然后跟PID，有64个signal，不提供的话，默认是sigterm。<code>kill -1 PID</code>，hup信号，使用相同的PID重新启动。<code>kill -9 PID</code>，绝对kill信号，将进程的资源发送到特殊设备/dev/null来强制进程停止。killall命令类似于kill，不用PID，而是用进程名称。<br>后台运行进程，命令后加<code>&amp;</code>。fg命令（foreground）后面跟PID，将后台运行的进程移动到前台。<br>调度进程：安排进程在一天中的特定时间运行。at命令是一个守护进程一个后台进程，用于安排作业在将来的某个时间点运行一次。crond命令适合将任务安排在每天、每周或每月发生。at命令，进入交互模式，输入执行的时间点，回车后输入要执行的程序。<br>黑客通常需要在他们想要杀死的目标上找到进程，例如防病毒软件或防火墙。</p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p> 从技术上讲，有两种类型的变量：shell和environment。环境变量是系统范围变量，被shell或进程继承。而shell变量通常以小写形式给出，仅在设置它们的shell中有效。变量是键值对，多个值的话用冒号隔开<code>key=value1:value2:value3</code>。如果值中有空格，需要用引号包含。<br> env命令查看默认环境变量，set命令列出系统唯一的所有环境变量，可以用<code>set | more</code>，更容易查看。也可以用grep过滤<code>set | grep HISTSIZE</code>，此变量包含命令历史记录文件将存储的最大命令数。这些命令是您之前在此会话中键入到命令提示符中的任何命令，可以使用向上和向下箭头键调用。<br><code>HISTSIZE=0</code>，在session中修改该变量，系统就不会存储以前输入的命令。这样修改环境变量，该更改仅发生在特定环境中，如果在kali中执行，该环境就是bash shell会话。当关闭终端后，更改将会丢失。<code>export HISTSIZE</code>，永久化更改。<br>PS1环境变量是shell提示符的格式。<br>环境中最重要的变量之一是PATH，控制shell在系统上查找您输入的命令的位置。<code>echo $PATH</code>查看变量。<br><code>PATH=$PATH:/root/newhackingtool</code>，将新目录添加到PATH变量中。<code>$PATH</code>就是以前的PATH，后面加个冒号就是在后面再填上一个值，然后重新赋值给PATH。<br>直接在shell中用变量名=值来自定义变量，用unset命令删除变量。</p>
+<h2 id="bash脚本"><a href="#bash脚本" class="headerlink" title="bash脚本"></a>bash脚本</h2><p>脚本语言ruby（metasploit使用ruby编写的），python，perl（最好的文本操作脚本语言）。<br>shell是用户和操作系统之间的接口。<br>打开文本编辑器，首先，需要告诉操作系统要为脚本使用哪个解释器，输入shebang（就是一个井号加一个感叹号），后面加上<code>/bin/bash</code>，指示希望操作系统使用bash shell解释器。<br>echo命令，告诉系统简单的在显示器显示echo后面的内容，字符串用双引号引起来。注释以井号开头。<br>刚保存的文件没有执行权限，可以使用<code>chmod 755</code>修改<br>read命令，后面跟变量名，变量存储用户输入。用<code>$</code>后面跟变量名来使用变量的值。</p>
+<h2 id="压缩和存档"><a href="#压缩和存档" class="headerlink" title="压缩和存档"></a>压缩和存档</h2><p>压缩分为有损和无损。有损压缩会丢失信息的完整性，这种类型的压缩适用于图形视频和音频，这些文件中，文件中的微小差异几乎不明显。mp3，mp4，png，jpg都是有损压缩算法。<br>tar：tape archive磁带存档<br>-c 创建压缩文件<br>-v 显示进度<br>-x 解压模式<br>-f 要压缩或解压的文件，-f必须位于最后一个参数<br>-z gzip模式，一般位于第一个参数位置<br>-C 解压目的地<br>-t 查看压缩文件的内容</p>
+<p>压缩时常用组合：<br>tar -cvf test.tar 1.txt 2.txt 3.txt<br>tar -zcvf text.tar.gz 1.txt 2.txt 3.txt</p>
+<p>解压时常用组合<br>tar -xvf name.tar<br>tar -xvf name.tar -C /…<br>tar -zxvf name.tar.gz</p>
+<h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2><p>用于探测系统以查看它是否连接到网络并找出哪些端口是打开的。从发现的开放端口中，可以推测目标系统上运行了哪些服务。<br>最简单的形式：</p>
+<figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bnf">nmap <span class="hljs-attribute">&lt;type of scan&gt;</span><span class="hljs-attribute">&lt;target IP&gt;</span><span class="hljs-attribute">&lt;optionally, target port&gt;</span><br><span class="hljs-attribute">&lt;扫描类型&gt;</span><span class="hljs-attribute">&lt;目标 IP&gt;</span><span class="hljs-attribute">&lt;可选，目标端口&gt;</span><br></code></pre></td></tr></table></figure>
+<p>最简单最可靠的nmap扫描是TCP连接扫描，用<code>-sT</code>指定。<br><code>nmap -sT 192.168.181.1 -p 3306</code>，扫描该IP的3306端口是否打开。</p>
+<p>扫描局域网内的3306端口：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">nmap</span> -sT <span class="hljs-number">192.168</span>.<span class="hljs-number">101.0</span>/<span class="hljs-number">24</span> -<span class="hljs-keyword">p</span> <span class="hljs-number">3306</span> &gt; /dev/null -oG MySQLscan<br><span class="hljs-keyword">cat</span> MySQLscan | <span class="hljs-keyword">grep</span> <span class="hljs-keyword">open</span> &gt; MySQLscan2<br></code></pre></td></tr></table></figure>
+<p>将标准nmap输出丢弃（如果是远程使用脚本，需要将输出隐藏起来），-oG表示将结果以grep-able格式发送到文件中。</p>
+<h2 id="Snort"><a href="#Snort" class="headerlink" title="Snort"></a>Snort</h2><p>世界上最好的网络入侵检测系统network intrusion detection system NIDS，通常用于检测黑客的入侵，如果想成为成功的黑客，必须熟悉NIDS如何阻止攻击，以及如何滥用NIDS来避免被发现。</p>
+<h2 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h2><p>最流行的渗透测试和黑客框架。漏洞利用框架。<br>/usr/share/wordlists/metasploit。包含多个单词列表，用于暴力破解密码。<br>msfconsole命令，启动metasploit。</p>
 
                 
               </div>

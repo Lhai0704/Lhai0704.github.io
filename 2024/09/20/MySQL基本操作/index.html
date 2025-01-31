@@ -24,7 +24,7 @@
 <meta property="og:description" content="数据库：数据存储的仓库数据库管理系统DBMS：操纵和管理数据库的大型软件SQL：操作关系型数据库的编程语言，是一套标准mysql默认端口号是3306mysql –versionmysql_secure_installationmysql -u root -p：以root身份用密码登录mysql [-h 127.0.0.1] [-P 3306] -u root -p 关系型数据库：建立在关系模型的基">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-20T12:39:44.096Z">
-<meta property="article:modified_time" content="2025-01-18T03:17:25.291Z">
+<meta property="article:modified_time" content="2025-01-31T10:58:49.173Z">
 <meta property="article:author" content="LuHai">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          3.6k 字
         
       </span>
     
@@ -218,7 +218,7 @@
         
         
         
-          28 分钟
+          30 分钟
         
       </span>
     
@@ -268,7 +268,7 @@
 <p>删除：<br>delete from 表名 【where 条件】；</p>
 <h2 id="DQL-查询"><a href="#DQL-查询" class="headerlink" title="DQL 查询"></a>DQL 查询</h2><p>![[截屏2024-09-20 22.37.13.png]]</p>
 <h3 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h3><p>select 字段1，字段2 from 表名；<br>![[截屏2024-09-20 22.39.41.png]]<br>select distinct 字段 from 表名； 去除重复记录</p>
-<p>where后跟条件列表<br>![[截屏2024-09-20 22.45.08.png]]<br>名字为两个字的：<code>select * from emp where name like &#39;__&#39;;</code><br>身份证最后为X的：<code>select * from emp where idcard like &#39;%X&#39;;</code></p>
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><p>where后跟条件列表<br>![[截屏2024-09-20 22.45.08.png]]<br>名字为两个字的：<code>select * from emp where name like &#39;__&#39;;</code><br>身份证最后为X的：<code>select * from emp where idcard like &#39;%X&#39;;</code></p>
 <p>判断值是null不要用<code>= null</code>，要用<code>is null</code></p>
 <h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><p>将一列数据作为一个整体，进行纵向计算。不对null进行运算。<br>常见聚合函数：count，max，min，avg，sum。<br>count()，可以作用于字段名、常量、<code>*</code>。推荐使用<code>count(*)</code></p>
 <p>聚合函数，作用于表中的某一列<br>select 聚合函数（字段列表）from 表名；<br>注：null不参与聚合函数计算</p>
@@ -281,7 +281,7 @@
 <p>DCL 管理数据库用户，控制数据库的访问权限<br>![[截屏2024-09-21 09.43.52.png]]<br>主机名用%表示任意主机</p>
 <p>![[截屏2024-09-21 09.51.18.png]]</p>
 <p>![[截屏2024-09-21 09.52.39.png]]</p>
-<p>函数：<br>![[截屏2024-09-21 09.58.50.png]]<br>注：substring的索引从1开始</p>
+<p>函数：<br>![[截屏2024-09-21 09.58.50.png]]<br>注：substring的索引从1开始<br>length函数，返回varchar包含字符数</p>
 <p>![[截屏2024-09-21 10.06.42.png]]</p>
 <p>![[截屏2024-09-21 10.14.47.png]]</p>
 <p>![[截屏2024-09-21 10.21.38.png]]<br>例如学生成绩：</p>
@@ -290,21 +290,26 @@
 
 <p>约束：作用于字段上的规则，限制数据<br>![[截屏2024-09-21 10.33.05.png]]<br>自增：auto_increment，可以配合主键</p>
 <p>外键让两张表的数据之间建立连接<br>![[截屏2024-09-21 14.01.29.png]]<br>![[截屏2024-09-21 14.04.27.png]]<br>![[截屏2024-09-21 14.07.07.png]]<br>语法：在创建外键时，后面加上 on update cascade on delete cascade;</p>
-<p>多表查询：<br>多表关系：一对多，多对多，一对一<br>一对多：<br>部门和员工，一个部门有很多员工，一个员工只属于一个部门<br>实现：在多的一方建立外键，指向一的主键<br>多对多：<br>学生与课程，<br>实现：建立第三方中间表，至少包含两个外键，分别关联两方的主键<br>一对一：<br>常用于单表拆分，任意一方加入外键，关联另一方的主键，并设置外键为unique</p>
-<p>多表查询：<br>笛卡尔积：A集合和B集合的所有组合情况<br><code>select * from A, B where a.id = b.id;</code><br>下面的操作都是在过滤笛卡尔积</p>
+<p>物理外键：使用foreign key定义外键关联另一张表。缺点：影响增删改的效率（需要检查外键关系），仅用于单节点数据库，不适用于分布式、集群场景，容易引发数据库死锁问题。<br>建议使用逻辑外键：在业务层逻辑中，解决外键关联。</p>
+<h2 id="多表查询："><a href="#多表查询：" class="headerlink" title="多表查询："></a>多表查询：</h2><h3 id="多表关系：一对多，多对多，一对一"><a href="#多表关系：一对多，多对多，一对一" class="headerlink" title="多表关系：一对多，多对多，一对一"></a>多表关系：一对多，多对多，一对一</h3><p>一对多：<br>部门和员工，一个部门有很多员工，一个员工只属于一个部门<br>部门表和员工表如果没有关联，如果直接删除部门，不会影响员工表，还是有员工属于被删除的部门，出现数据不完整、不一致。<br>实现：在多的一方建立外键，指向一的主键</p>
+<p>多对多：<br>学生与课程，<br>实现：建立第三方中间表，至少包含两个外键，分别关联两方的主键</p>
+<p>一对一：<br>用户和身份证信息，将一张表的基础字段放在一张表中，其他字段放在另一张表中，以提升操作效率<br>常用于单表拆分，任意一方加入外键，关联另一方的主键，并设置外键为unique</p>
+<h3 id="多表查询：-1"><a href="#多表查询：-1" class="headerlink" title="多表查询："></a>多表查询：</h3><p>笛卡尔积：A集合和B集合的所有组合情况<br><code>select * from A, B where a.id = b.id;</code><br>下面的操作都是在过滤笛卡尔积</p>
 <p>多表查询分类：<br>    连接查询：<br>        内连接：A和B交集<br>        外连接：左/右外连接：查询左/右表的数据和交集的数据<br>        自连接<br>    子查询</p>
 <p>![[截屏2024-09-21 14.31.45.png]]<br><code>select e.name, d.name from emp e, dept d where e.dept_id = d.id;</code><br>注：给表起了别名之后，就不能用原名了</p>
 <p><code>select e.name, d.name from emp e inner join dept d on e.dept_id = d.id;</code></p>
-<p>![[截屏2024-09-21 14.37.40.png]]</p>
+<p>![[截屏2024-09-21 14.37.40.png]]<br>比如说有一个员工表和一个部门表，其中有一个员工暂时没有分配部门，如果使用内连接的话，这个员工的信息不会显示，这时候可以使用外连接。</p>
 <p>![[截屏2024-09-21 14.42.02.png]]</p>
 <p>自连接必须起表别名，就当成两张表</p>
 <p>![[截屏2024-09-21 14.46.32.png]]<br>union all是直接将两个结果拼起来，不加all的话可以去重。<br>字段列表必须一致</p>
-<p>sql中嵌套select语句，称为嵌套查询，又称子查询<br>标量子查询，直接用就行，可以用大于号，小于号等等</p>
+<h4 id="子查询（嵌套查询）"><a href="#子查询（嵌套查询）" class="headerlink" title="子查询（嵌套查询）"></a>子查询（嵌套查询）</h4><p>sql中嵌套select语句，称为嵌套查询，又称子查询<br>根据内层select语句返回内容可以区分为：标量子查询，列子查询，行子查询，表子查询</p>
+<p>标量子查询，直接用就行，可以用大于号，小于号等等</p>
 <p>![[截屏2024-09-21 14.59.58.png]]</p>
 <p>![[截屏2024-09-21 15.05.53.png]]<br>![[截屏2024-09-21 15.15.11.png]]<br>通常将结果放在from后，</p>
-<p>事务：<br>![[截屏2024-09-21 20.30.50.png]]</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-keyword">select</span> @<span class="hljs-title">@autocommit</span><span class="hljs-comment">;    为1是自动提交事物</span><br>set @<span class="hljs-title">@autocommit</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;   为0是手动提交事物</span><br><br>commit<span class="hljs-comment">;    提交事务</span><br>rollback<span class="hljs-comment">;  回滚事务</span><br></code></pre></td></tr></table></figure>
-<p>开启事务：<br>start transaction; 或begin;</p>
+<h2 id="事务："><a href="#事务：" class="headerlink" title="事务："></a>事务：</h2><p>![[截屏2024-09-21 20.30.50.png]]<br>开启事务：start transaction; 或begin;<br>提交事务：commit;    （事务里操作都成功后才commit）<br>回滚事务：rollback;   （事务里有操作失败的话就rollback）</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-keyword">select</span> @<span class="hljs-title">@autocommit</span><span class="hljs-comment">;    为1是自动提交事物</span><br>set @<span class="hljs-title">@autocommit</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;   为0是手动提交事物</span><br><br><br></code></pre></td></tr></table></figure>
+
+
 <p>![[截屏2024-09-21 20.46.19.png]]</p>
 <p>![[截屏2024-09-21 20.50.54.png]]</p>
 <p>![[截屏2024-09-21 20.56.34.png]]</p>
@@ -319,7 +324,7 @@
 <p>![[截屏2024-09-21 21.53.09.png]]</p>
 <p>![[截屏2024-09-21 21.54.24.png]]<br>![[截屏2024-09-21 21.55.00.png]]</p>
 <p>![[截屏2024-09-21 21.57.08.png]]<br>MyISAM被NoSQL数据库MongoDB取代，MEMORY被Redis取代</p>
-<p>![[截屏2024-09-22 09.07.10.png]]<br>![[截屏2024-09-22 09.11.30.png]]</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>![[截屏2024-09-22 09.07.10.png]]<br>![[截屏2024-09-22 09.11.30.png]]</p>
 <p>![[截屏2024-09-22 09.17.49.png]]</p>
 <p>![[截屏2024-09-22 09.19.58.png]]</p>
 <p><a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/BTree.html">https://www.cs.usfca.edu/~galles/visualization/BTree.html</a><br>节点中key的个数大于设置的最大度数后，中间key向上分裂</p>
