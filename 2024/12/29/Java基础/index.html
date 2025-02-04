@@ -16,15 +16,15 @@
   <meta name="author" content="LuHai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。对象中的数据称为实例字段，操作数据的过程称为方法。实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。OOP的另一个原则是：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应">
+    <meta name="description" content="字符串构建字符串StringBuilder类可以构建字符串，先构建一个空的字符串构建器StringBuilder builder &#x3D; new StringBuilder();，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LuHai的个人博客">
-<meta property="og:url" content="http://lhai0704.github.io/2024/12/29/Java%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/index.html">
+<meta property="og:url" content="http://lhai0704.github.io/2024/12/29/Java%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="LuHai的个人博客">
-<meta property="og:description" content="封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。对象中的数据称为实例字段，操作数据的过程称为方法。实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。OOP的另一个原则是：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应">
+<meta property="og:description" content="字符串构建字符串StringBuilder类可以构建字符串，先构建一个空的字符串构建器StringBuilder builder &#x3D; new StringBuilder();，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-29T12:07:08.048Z">
-<meta property="article:modified_time" content="2024-12-29T12:39:34.603Z">
+<meta property="article:modified_time" content="2025-02-04T11:46:35.985Z">
 <meta property="article:author" content="LuHai">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          232 字
+          367 字
         
       </span>
     
@@ -218,7 +218,7 @@
         
         
         
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -260,7 +260,9 @@
             
               <div class="markdown-body">
                 
-                <p>封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。对象中的数据称为实例字段，操作数据的过程称为方法。实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。<br>OOP的另一个原则是：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。<br>识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应动词。<br>对象变量和对象有区别，对象变量并不实际包含一个对象，它只是引用一个对象。所有的Java对象都存储在堆中。</p>
+                <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>构建字符串<br>StringBuilder类可以构建字符串，先构建一个空的字符串构建器<code>StringBuilder builder = new StringBuilder();</code>，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。<br>StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符串编辑操作都在单个线程中执行（通常如此），则使用StringBuilder类。</p>
+<h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><p> <strong>LocalDate、LocalTime、LocalDateTime</strong> 和 <strong>Zoned</strong>使用参考<a href="">https://blog.csdn.net/qq_33697094/article/details/115454081</a></p>
+<h2 id="对象与泪"><a href="#对象与泪" class="headerlink" title="对象与泪"></a>对象与泪</h2><p>封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。对象中的数据称为实例字段，操作数据的过程称为方法。实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。<br>OOP的另一个原则是：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。<br>识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应动词。<br>对象变量和对象有区别，对象变量并不实际包含一个对象，它只是引用一个对象。所有的Java对象都存储在堆中。</p>
 
                 
               </div>
