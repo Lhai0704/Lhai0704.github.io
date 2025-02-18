@@ -16,15 +16,15 @@
   <meta name="author" content="LuHai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字符串构建字符串StringBuilder类可以构建字符串，先构建一个空的字符串构建器StringBuilder builder &#x3D; new StringBuilder();，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符">
+    <meta name="description" content="字符窜任何一个Java对象都可以转换成字符串。String类没有提供方法来修改字符串中的某个字符，所以String类对象是不可变的，但我们可以修改字符串变量，让它指向另外的字符串。不可变字符串有其优点：编译器可以让字符串共享。想象各个字符串存放在一个公共存储池中。 用equals方法检测两个字符串是否相等，equalsIgnoreCase方法忽略大小写判断是否相等。 构建字符串StringBuil">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LuHai的个人博客">
 <meta property="og:url" content="http://lhai0704.github.io/2024/12/29/Java%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="LuHai的个人博客">
-<meta property="og:description" content="字符串构建字符串StringBuilder类可以构建字符串，先构建一个空的字符串构建器StringBuilder builder &#x3D; new StringBuilder();，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符">
+<meta property="og:description" content="字符窜任何一个Java对象都可以转换成字符串。String类没有提供方法来修改字符串中的某个字符，所以String类对象是不可变的，但我们可以修改字符串变量，让它指向另外的字符串。不可变字符串有其优点：编译器可以让字符串共享。想象各个字符串存放在一个公共存储池中。 用equals方法检测两个字符串是否相等，equalsIgnoreCase方法忽略大小写判断是否相等。 构建字符串StringBuil">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-29T12:07:08.048Z">
-<meta property="article:modified_time" content="2025-02-04T11:46:35.985Z">
+<meta property="article:modified_time" content="2025-02-18T08:08:03.216Z">
 <meta property="article:author" content="LuHai">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          1.1k 字
         
       </span>
     
@@ -218,7 +218,7 @@
         
         
         
-          4 分钟
+          9 分钟
         
       </span>
     
@@ -260,9 +260,20 @@
             
               <div class="markdown-body">
                 
-                <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>构建字符串<br>StringBuilder类可以构建字符串，先构建一个空的字符串构建器<code>StringBuilder builder = new StringBuilder();</code>，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。<br>StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符串编辑操作都在单个线程中执行（通常如此），则使用StringBuilder类。</p>
+                <h2 id="字符窜"><a href="#字符窜" class="headerlink" title="字符窜"></a>字符窜</h2><p>任何一个Java对象都可以转换成字符串。<br>String类没有提供方法来修改字符串中的某个字符，所以String类对象是不可变的，但我们可以修改字符串变量，让它指向另外的字符串。<br>不可变字符串有其优点：编译器可以让字符串共享。想象各个字符串存放在一个公共存储池中。</p>
+<p>用equals方法检测两个字符串是否相等，equalsIgnoreCase方法忽略大小写判断是否相等。</p>
+<h3 id="构建字符串"><a href="#构建字符串" class="headerlink" title="构建字符串"></a>构建字符串</h3><p>StringBuilder类可以构建字符串，先构建一个空的字符串构建器<code>StringBuilder builder = new StringBuilder();</code>，需要添加字符串时，调用append方法，字符串构建完成时，调用toString方法。<br>StringBuffer类的效率不如StringBuilder类，但StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符串编辑操作都在单个线程中执行（通常如此），则使用StringBuilder类。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="for-each循环"><a href="#for-each循环" class="headerlink" title="for each循环"></a>for each循环</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (variable: collection) statement<br><span class="hljs-title function_">for</span> <span class="hljs-params">(<span class="hljs-type">int</span> element: a)</span> <br>	System.out.println();<br></code></pre></td></tr></table></figure>
+
+<p>collection表达式必须是一个数组或者是一个实现了Iterable接口的类对象</p>
+<h3 id="数组拷贝"><a href="#数组拷贝" class="headerlink" title="数组拷贝"></a>数组拷贝</h3><p><code>int[] a = b;</code> 此时，两个变量引用同一个数组。<br>要将数组中的所有值拷贝到一个新数组中，使用Arrays类的copyOf方法，其中第二个参数为新数组长度。该方法常用于增加数组的大小。</p>
 <h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><p> <strong>LocalDate、LocalTime、LocalDateTime</strong> 和 <strong>Zoned</strong>使用参考<a href="">https://blog.csdn.net/qq_33697094/article/details/115454081</a></p>
-<h2 id="对象与泪"><a href="#对象与泪" class="headerlink" title="对象与泪"></a>对象与泪</h2><p>封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。对象中的数据称为实例字段，操作数据的过程称为方法。实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。<br>OOP的另一个原则是：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。<br>识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应动词。<br>对象变量和对象有区别，对象变量并不实际包含一个对象，它只是引用一个对象。所有的Java对象都存储在堆中。</p>
+<h2 id="对象与泪"><a href="#对象与泪" class="headerlink" title="对象与泪"></a>对象与泪</h2><h3 id="面向对象程序设计概述"><a href="#面向对象程序设计概述" class="headerlink" title="面向对象程序设计概述"></a>面向对象程序设计概述</h3><p>面向对象程序设计OOP，是主流的程序设计范型。面向对象的程序由对象组成，每个对象包含对用户公开的特定功能和隐藏的实现。<br>类指定了如何构造对象。将类想象成模具，对象想象成模具制造出的成品。<br>由一个类构造contract对象的过程称为创建这个类的一个实例instance。</p>
+<p>封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。<br>对象中的数据称为实例字段，操作数据的过程称为方法。<br>实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。封装为对象赋予了“黑盒”特征。</p>
+<p>面向对象程序设计的另一个原则让用户自定义Java类变得更容易：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。所有类都扩展自一个“神通广大的超类”Object类。</p>
+<p>识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应动词。<br>类之间的关系有依赖、聚合和继承等。<br>依赖指一个类的方法要使用或操作另一个类的对象。应当尽可能减少相互依赖的类。这里的关键是，如果类A不知道B的存在，它就不会关心B的任何改变（这意味着B的改变不会在A中引入bug）</p>
+<p>采用UML统一建模语言来绘制类图，来描述类之间的关系</p>
+<h3 id="使用预定义的类"><a href="#使用预定义的类" class="headerlink" title="使用预定义的类"></a>使用预定义的类</h3><p>要想使用对象，首先必须构造对象，并指定其初始状态。然后对对象应用方法。<br>使用构造器或称构造函数来构造新实例。构造器是一种特殊的方法，作用是构造并初始化对象。构造器总是与类同名。以Date类为例，构造Date对象，在构造器前面加上new：<code>new Date();</code> ，可以将这个对象存放在一个变量中：<code>Date rightNow = new Date();</code> 。<br>对象变量和对象有区别，对象变量并不实际包含一个对象，它只是引用一个对象。<br>任何对象变量的值都是一个引用，指向存储在另一个地方的某个对象。new操作符的返回值也是一个引用。<br>可以把Java里面的对象变量看作C++中的对象指针。<br>所有的Java对象都存储在堆中。</p>
 
                 
               </div>
