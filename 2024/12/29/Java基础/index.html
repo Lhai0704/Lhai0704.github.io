@@ -24,7 +24,7 @@
 <meta property="og:description" content="字符窜任何一个Java对象都可以转换成字符串。String类没有提供方法来修改字符串中的某个字符，所以String类对象是不可变的，但我们可以修改字符串变量，让它指向另外的字符串。不可变字符串有其优点：编译器可以让字符串共享。想象各个字符串存放在一个公共存储池中。 用equals方法检测两个字符串是否相等，equalsIgnoreCase方法忽略大小写判断是否相等。 构建字符串StringBuil">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-29T12:07:08.048Z">
-<meta property="article:modified_time" content="2025-02-18T08:08:03.216Z">
+<meta property="article:modified_time" content="2025-02-25T13:24:52.212Z">
 <meta property="article:author" content="LuHai">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          2.6k 字
         
       </span>
     
@@ -218,7 +218,7 @@
         
         
         
-          9 分钟
+          22 分钟
         
       </span>
     
@@ -267,14 +267,47 @@
 
 <p>collection表达式必须是一个数组或者是一个实现了Iterable接口的类对象</p>
 <h3 id="数组拷贝"><a href="#数组拷贝" class="headerlink" title="数组拷贝"></a>数组拷贝</h3><p><code>int[] a = b;</code> 此时，两个变量引用同一个数组。<br>要将数组中的所有值拷贝到一个新数组中，使用Arrays类的copyOf方法，其中第二个参数为新数组长度。该方法常用于增加数组的大小。</p>
-<h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><p> <strong>LocalDate、LocalTime、LocalDateTime</strong> 和 <strong>Zoned</strong>使用参考<a href="">https://blog.csdn.net/qq_33697094/article/details/115454081</a></p>
+<h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><p> <strong>LocalDate、LocalTime、LocalDateTime</strong> 和 <strong>Zoned</strong>使用参考<a href="">https://blog.csdn.net/qq_33697094/article/details/115454081</a><br> Date类表示时间点，LocalDate类日历表示法</p>
 <h2 id="对象与泪"><a href="#对象与泪" class="headerlink" title="对象与泪"></a>对象与泪</h2><h3 id="面向对象程序设计概述"><a href="#面向对象程序设计概述" class="headerlink" title="面向对象程序设计概述"></a>面向对象程序设计概述</h3><p>面向对象程序设计OOP，是主流的程序设计范型。面向对象的程序由对象组成，每个对象包含对用户公开的特定功能和隐藏的实现。<br>类指定了如何构造对象。将类想象成模具，对象想象成模具制造出的成品。<br>由一个类构造contract对象的过程称为创建这个类的一个实例instance。</p>
 <p>封装，有时称为信息隐藏。是将数据和行为组合在一个包中，对使用者隐藏具体的实现细节。<br>对象中的数据称为实例字段，操作数据的过程称为方法。<br>实现封装的关键在于，绝对不能让其他类中的方法直接访问这个类的实例字段。程序只能通过对象的方法与对象数据进行交互。封装为对象赋予了“黑盒”特征。</p>
 <p>面向对象程序设计的另一个原则让用户自定义Java类变得更容易：可以通过扩展其他类来构建新类。这个新类具有被扩展的那个类的全部属性和方法。所有类都扩展自一个“神通广大的超类”Object类。</p>
 <p>识别类的一个简单经验是在分析问题的过程中寻找名词，而方法对应动词。<br>类之间的关系有依赖、聚合和继承等。<br>依赖指一个类的方法要使用或操作另一个类的对象。应当尽可能减少相互依赖的类。这里的关键是，如果类A不知道B的存在，它就不会关心B的任何改变（这意味着B的改变不会在A中引入bug）</p>
 <p>采用UML统一建模语言来绘制类图，来描述类之间的关系</p>
 <h3 id="使用预定义的类"><a href="#使用预定义的类" class="headerlink" title="使用预定义的类"></a>使用预定义的类</h3><p>要想使用对象，首先必须构造对象，并指定其初始状态。然后对对象应用方法。<br>使用构造器或称构造函数来构造新实例。构造器是一种特殊的方法，作用是构造并初始化对象。构造器总是与类同名。以Date类为例，构造Date对象，在构造器前面加上new：<code>new Date();</code> ，可以将这个对象存放在一个变量中：<code>Date rightNow = new Date();</code> 。<br>对象变量和对象有区别，对象变量并不实际包含一个对象，它只是引用一个对象。<br>任何对象变量的值都是一个引用，指向存储在另一个地方的某个对象。new操作符的返回值也是一个引用。<br>可以把Java里面的对象变量看作C++中的对象指针。<br>所有的Java对象都存储在堆中。</p>
-
+<h3 id="自定义类"><a href="#自定义类" class="headerlink" title="自定义类"></a>自定义类</h3><p>文件名必须与public类的名字匹配。一个源文件中只能有一个公共类，但可以有任意数目的非公共类。<br>构造器与类同名，构造器会将实例字段初始化为所希望的初始状态。<br>构造器总是结合new操作符来调用。<br>注意在所有方法中都不要使用与实例字段同名的变量。<br>Java10中，如果可以从变量的初始值推导出它们的类型，则可以用var声明局部变量，注意只能用于方法中的局部变量。</p>
+<p>定义一个类时，最好清楚地知道哪些字段可能为null。如果有的字段可能为null，宽容的解决方案是使用Objects.requireNonNullElse方法，将null转换为适当的非null值，严格的解决方案是使用Objects.requireNonNull方法，如果用null构造对象，会产生NullPointerException异常。</p>
+<p>可以将实例字段定义为final，这样的字段必须在构造对象时初始化，并且以后不能再修改这个字段。比如可以将String类型的字段设置为final：<code>private final String name;</code>。对于可变类，例如StringBuilder：<code>private final StringBuilder name;</code>在构造器中，<code>name = new StringBuilder()</code>，final只是表示存储在a变量中的对象引用不会再指示另一个不同的StringBuilder对象，不过这个对象还是可以更改的。</p>
+<p>静态方法是不操作对象的方法，例如<code>Math.pow()</code>，它并不使用任何Math对象来完成这个任务。<br>静态方法可以访问静态字段。<br>下面两种方法可以使用静态方法：1. 方法不需要访问对象状态，因为它需要的所有参数都通过显式参数提供。2. 方法只需要访问类的静态字段。</p>
+<p>工厂方法，类似LocalDate的类使用静态工厂方法来构造对象，不使用构造器创建对象的原因：1. 无法为构造器命名，构造器名字需要和类相同，有时候需要有两个不同的名字，构造不同的对象。2. 使用构造器时，无法改变所构造对象的类型。</p>
+<p>main方法也是一个静态方法，每一个类都可以有一个main方法。</p>
+<p>按值调用表示方法接收的是调用者提供的值。<br>按引用调用表示方法接收的是调用者提供的变量位置。<br>Java总是采用按值调用，方法会得到所有参数值的一个副本。如果给方法传递一个基本数据类型，则方法不能改变其值，如果给方法传递一个对象（引用），则方法会复制一个对象引用，这两个引用同时引用（指向）同一个对象，此时可以修改对象，使得原来传递进去的对象引用所引用的对象发生改变。</p>
+<p>对象构造，Java提供了多种编写构造器的机制</p>
+<ol>
+<li>重载，多个方法有相同的方法名但有不同的参数。编译器将参数类型进行匹配，查找匹配的过程称为重载解析</li>
+<li>默认字段初始化，如果在构造器中没有显式地为一个字段设置初始值，就会自动设置为默认值（0，false，null）</li>
+<li>无参数的构造器，对象的状态会设置为适当的默认值。如果类中没有构造器，就会得到一个默认的无参数构造器，该构造器将所有的实例字段设置为默认值。</li>
+<li>显式字段初始化，在类定义中直接为字段赋值。初始值不一定是常量，也可以利用方法返回值来初始化字段。</li>
+<li>参数名，编写很小的构造器时，参数名可以设置为字段名前面加一个a，比如，在构造器中：<code>name = aName;</code>，或者将参数名设置与字段名一致，初始化时：<code>this.salary = salary;</code></li>
+<li>调用另一个构造器，如果构造器的第一个语句形如<code>this(...)</code>，这个构造器将调用同一个类的另一个构造器。</li>
+<li>初始化块，不常用。静态初始化块，在初始化块前加static。</li>
+<li>对象析构与finalize方法，</li>
+</ol>
+<p>记录record，是一种特殊形式的类，其状态不可变，而且公共可读。<code>record Point(double x, double y) &#123;&#125;</code><br>记录的实例字段称为组件，这个类有一个构造器<code>Point(double x, double y)</code>和两个访问器：<code>public double x(); 和 public double y()</code>。每个记录会有三个自动定义的方法：toString、equals和hashCode。<br>可以在记录中编写方法，记录可以有静态字段和方法，但是不能为记录增加实例字段<br>记录的实例字段（上面的x和y）自动为final字段，不过它们可以是可变对象的引用，这样记录实例是可变的。<br>对于完全由一组变量表示的不可变数据，要使用记录而不是类。</p>
+<p>标准构造器p136没看懂</p>
+<p>使用包将类组织在一个集合中。使用包的主要原因是确保类名的唯一性。<br>对编译器来说，嵌套的包之间没有任何关系，都是相互独立的包。<br>一个类可以使用所属包的所有类，以及其他包的公共类。</p>
+<p>标记为public的部分可以由任意类使用，标记为private的部分只能由定义它们的类使用，没有指定的话，这个部分（类、方法或变量）可以由同一个包中的所有方法访问。</p>
+<p>p144-154，类路径，jar文件，文档注释。以后再看</p>
+<p>类设计技巧：</p>
+<ol>
+<li>保证数据私有</li>
+<li>初始化数据</li>
+<li>不要使用过多的基本数据类型</li>
+<li>不是所有字段需要getter和setter</li>
+<li>分解有过多职责的类</li>
+<li>类名和方法名要能体现其职责</li>
+<li>优先使用不可变的类</li>
+</ol>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2>
                 
               </div>
             
