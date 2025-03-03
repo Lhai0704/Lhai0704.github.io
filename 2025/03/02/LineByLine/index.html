@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuHai">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一款有逐行翻译功能的电子书阅读器软件。Electron + React 环境搭建123456789# 如果没有安装 Homebrew，先安装它&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;HEAD&#x2F;install.sh)&quot;# 使用 Homebrew 安装 Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LineByLine">
+<meta property="og:url" content="http://lhai0704.github.io/2025/03/02/LineByLine/index.html">
+<meta property="og:site_name" content="LuHai的个人博客">
+<meta property="og:description" content="一款有逐行翻译功能的电子书阅读器软件。Electron + React 环境搭建123456789# 如果没有安装 Homebrew，先安装它&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;HEAD&#x2F;install.sh)&quot;# 使用 Homebrew 安装 Node.js">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lhai0704.github.io/img/avatar.png">
+<meta property="article:published_time" content="2025-03-02T05:27:53.278Z">
+<meta property="article:modified_time" content="2025-03-01T16:46:22.333Z">
+<meta property="article:author" content="LuHai">
+<meta property="article:tag" content="Electron">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lhai0704.github.io/img/avatar.png">
+  
+  
+  
+  <title>LineByLine - LuHai的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lhai0704.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lhai&#39;blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LineByLine"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-02 13:27" pubdate>
+          2025年3月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LineByLine</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>一款有逐行翻译功能的电子书阅读器软件。Electron + React</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 如果没有安装 Homebrew，先安装它</span><br>/bin/bash -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span><br><br><span class="hljs-comment"># 使用 Homebrew 安装 Node.js</span><br>brew install node<br><br><span class="hljs-comment"># 验证安装</span><br>node --version<br>npm --version<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建项目文件夹</span><br><span class="hljs-built_in">mkdir</span> ebook-reader<br><span class="hljs-built_in">cd</span> ebook-reader<br><br><span class="hljs-comment"># 初始化项目</span><br>npm init -y<br><br><span class="hljs-comment"># 安装必要的依赖</span><br>npm install electron@latest react@latest react-dom@latest<br>npm install --save-dev @babel/core @babel/preset-react @babel/preset-env<br>npm install --save-dev webpack webpack-cli babel-loader<br></code></pre></td></tr></table></figure>
+<p>注：npm install electron@latest时速度慢，额外添加electron的镜像，参考<a target="_blank" rel="noopener" href="https://juejin.cn/post/6855526489904349198">https://juejin.cn/post/6855526489904349198</a></p>
+<h3 id="创建项目结构"><a href="#创建项目结构" class="headerlink" title="创建项目结构"></a>创建项目结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> src<br><span class="hljs-built_in">touch</span> main.js<br><span class="hljs-built_in">touch</span> index.html<br><span class="hljs-built_in">touch</span> webpack.config.js<br><span class="hljs-built_in">touch</span> .babelrc<br></code></pre></td></tr></table></figure>
+<h3 id="核心文件说明"><a href="#核心文件说明" class="headerlink" title="核心文件说明"></a>核心文件说明</h3><ul>
+<li>index.html：应用程序入口页面，定义了一个div容器<code>id=&quot;root&quot;</code>，React组件会挂载在这里。<code>script src=&quot;./dist/bundle.js&quot;</code> 说明 React 代码会被 Webpack 或其他打包工具编译为 <code>bundle.js</code>，然后在这里加载。</li>
+<li>index.js：React应用程序入口文件。负责初始化 React 应用，并把 <code>App.js</code> 组件渲染到 <code>index.html</code> 的 <code>root</code> 容器里。通过 <code>createRoot(container).render(&lt;App /&gt;)</code> 挂载 <code>App</code> 组件。</li>
+<li>App.js：React前端界面，主React组件</li>
+<li>main.js：Electron主进程</li>
+<li>webpack.config.js：打包配置文件，用于将React代码编译成浏览器可运行的代码</li>
+<li>database.js：数据库相关代码</li>
+</ul>
+<p>用户选择文件 -&gt; main.js 处理文件读取<br>文本分割后通过 IPC 通信传递给前端显示</p>
+<h2 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h2><p>webpack.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>,<br>  <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;electron-renderer&#x27;</span>,<br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,<br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>),<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [<br>      &#123;<br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(js|jsx)$/</span>,<br>        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,<br>        <span class="hljs-attr">use</span>: &#123;<br>          <span class="hljs-attr">loader</span>: <span class="hljs-string">&#x27;babel-loader&#x27;</span><br>        &#125;<br>      &#125;<br>    ]<br>  &#125;,<br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">&#x27;.js&#x27;</span>, <span class="hljs-string">&#x27;.jsx&#x27;</span>]<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>.babelrc</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;presets&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;@babel/preset-react&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;@babel/preset-env&quot;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>package.json，加入</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;webpack &amp;&amp; electron .&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;webpack&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;watch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;webpack --watch&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>.gitignore</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">node<span class="hljs-emphasis">_modules/</span><br><span class="hljs-emphasis">dist/</span><br><span class="hljs-emphasis">.DS_</span>Store<br></code></pre></td></tr></table></figure>
+
+<h2 id="添加基础代码"><a href="#添加基础代码" class="headerlink" title="添加基础代码"></a>添加基础代码</h2><p>src/index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; createRoot &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom/client&#x27;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span>;<br><br><span class="hljs-keyword">const</span> container = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>);<br><span class="hljs-keyword">const</span> root = <span class="hljs-title function_">createRoot</span>(container);<br>root.<span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>);<br></code></pre></td></tr></table></figure>
+<p>src/App.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><span class="hljs-keyword">const</span> &#123; ipcRenderer &#125; = <span class="hljs-variable language_">window</span>.<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [lines, setLines] = <span class="hljs-title function_">useState</span>([]);<br><br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleFileSelect</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> content = <span class="hljs-keyword">await</span> ipcRenderer.<span class="hljs-title function_">invoke</span>(<span class="hljs-string">&#x27;select-file&#x27;</span>);<br>    <span class="hljs-title function_">setLines</span>(content);<br>  &#125;;<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">padding:</span> &#x27;<span class="hljs-attr">20px</span>&#x27; &#125;&#125;&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleFileSelect&#125;</span>&gt;</span></span><br><span class="language-xml">        选择文件</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">marginTop:</span> &#x27;<span class="hljs-attr">20px</span>&#x27; &#125;&#125;&gt;</span></span><br><span class="language-xml">        &#123;lines.map((line, index) =&gt; (</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">marginBottom:</span> &#x27;<span class="hljs-attr">10px</span>&#x27; &#125;&#125;&gt;</span></span><br><span class="language-xml">            &#123;line&#125;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        ))&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;<br></code></pre></td></tr></table></figure>
+<p>index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>eBook Reader<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span> <br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span> <br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;root&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./dist/bundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> <br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>main.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; app, <span class="hljs-title class_">BrowserWindow</span>, ipcMain, dialog &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);<br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">createWindow</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123;<br>	<span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,<br>	<span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,<br>	<span class="hljs-attr">webPreferences</span>: &#123;<br>		<span class="hljs-attr">nodeIntegration</span>: <span class="hljs-literal">true</span>,<br>		<span class="hljs-attr">contextIsolation</span>: <span class="hljs-literal">false</span><br>	&#125;<br>	&#125;);<br>  <br>	win.<span class="hljs-title function_">loadFile</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>);<br>&#125;<br><br>app.<span class="hljs-title function_">whenReady</span>().<span class="hljs-title function_">then</span>(createWindow);<br><br>ipcMain.<span class="hljs-title function_">handle</span>(<span class="hljs-string">&#x27;select-file&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;<br>	<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> dialog.<span class="hljs-title function_">showOpenDialog</span>(&#123;<br>		<span class="hljs-attr">properties</span>: [<span class="hljs-string">&#x27;openFile&#x27;</span>],<br>		<span class="hljs-attr">filters</span>: [<br>			&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Text Files&#x27;</span>, <span class="hljs-attr">extensions</span>: [<span class="hljs-string">&#x27;txt&#x27;</span>] &#125;<br>		]<br>	&#125;);<br><br>	<span class="hljs-keyword">if</span> (!result.<span class="hljs-property">canceled</span>) &#123;<br>		<span class="hljs-keyword">const</span> filePath = result.<span class="hljs-property">filePaths</span>[<span class="hljs-number">0</span>];<br>		<span class="hljs-keyword">const</span> content = fs.<span class="hljs-title function_">readFileSync</span>(filePath, <span class="hljs-string">&#x27;utf8&#x27;</span>);<br>		<span class="hljs-keyword">return</span> content.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;\n&#x27;</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> [];<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装所有依赖</span><br>npm install<br><br><span class="hljs-comment"># 构建并运行</span><br>npm start<br></code></pre></td></tr></table></figure>
+
+<h2 id="添加数据库"><a href="#添加数据库" class="headerlink" title="添加数据库"></a>添加数据库</h2><p>目前数据库中存储两个字段，原文和译文。翻译时先查找数据库中是否有原文，如果有直接获取，没有再调用翻译api。<br>使用better-sqlite3时出现了一些问题：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">Error: </span>The module &#x27;/LineByLine/node_modules/better-sqlite3/build/Release/better_sqlite3.node&#x27;<br>was compiled against a different Node.js version using<br>NODE_MODULE_VERSION 131. This version of Node.js requires<br>NODE_MODULE_VERSION 132. Please try re-compiling or re-installing<br>the module (for instance, using `npm rebuild` or `npm install`).<br></code></pre></td></tr></table></figure>
+<p>故暂时使用sqlite3：<code>npm install sqlite3</code>。</p>
+<p>database.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> sqlite3 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;sqlite3&#x27;</span>).<span class="hljs-title function_">verbose</span>();<br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>); <br><br><span class="hljs-comment">// 创建数据库连接</span><br><span class="hljs-keyword">const</span> db = <span class="hljs-keyword">new</span> sqlite3.<span class="hljs-title class_">Database</span>(path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;data.db&#x27;</span>), <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;<br>	<span class="hljs-keyword">if</span> (err) &#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Database connection error:&#x27;</span>, err);<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Connected to database&#x27;</span>);<br>	&#125;<br>&#125;);<br><br><span class="hljs-comment">// 创建表</span><br>db.<span class="hljs-title function_">serialize</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>	db.<span class="hljs-title function_">run</span>(<span class="hljs-string">`</span><br><span class="hljs-string">		CREATE TABLE IF NOT EXISTS translations (</span><br><span class="hljs-string">			id INTEGER PRIMARY KEY AUTOINCREMENT,</span><br><span class="hljs-string">			original TEXT UNIQUE,</span><br><span class="hljs-string">			translated TEXT</span><br><span class="hljs-string">		)</span><br><span class="hljs-string">	`</span>);<br>&#125;);<br><br><span class="hljs-comment">// 获取翻译</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getTranslation</span>(<span class="hljs-params">text</span>) &#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>		db.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;SELECT translated FROM translations WHERE original = ?&#x27;</span>, [text], <span class="hljs-function">(<span class="hljs-params">err, row</span>) =&gt;</span> &#123;<br>			<span class="hljs-keyword">if</span> (err) <span class="hljs-title function_">reject</span>(err);<br>			<span class="hljs-title function_">resolve</span>(row ? row.<span class="hljs-property">translated</span> : <span class="hljs-literal">null</span>);<br>		&#125;);<br>	&#125;);<br>&#125;<br><br><span class="hljs-comment">// 保存翻译</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">saveTranslation</span>(<span class="hljs-params">original, translated</span>) &#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>		<span class="hljs-keyword">const</span> sql = <span class="hljs-string">`</span><br><span class="hljs-string">			INSERT INTO translations (original, translated)</span><br><span class="hljs-string">			VALUES (?, ?)</span><br><span class="hljs-string">			ON CONFLICT(original)</span><br><span class="hljs-string">			DO UPDATE SET translated = excluded.translated</span><br><span class="hljs-string">		`</span>;<br>		db.<span class="hljs-title function_">run</span>(sql, [original, translated], <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;<br>			<span class="hljs-keyword">if</span> (err) <span class="hljs-title function_">reject</span>(err);<br>			<span class="hljs-title function_">resolve</span>();<br>		&#125;);<br>	&#125;);<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>	db,<br>	getTranslation,<br>	saveTranslation<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>main.js加入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> db = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./database&#x27;</span>);<br><br><span class="hljs-comment">// 读取译文</span><br>ipcMain.<span class="hljs-title function_">handle</span>(<span class="hljs-string">&#x27;get-translation&#x27;</span>, <span class="hljs-keyword">async</span> (event, text) =&gt; &#123;<br>	<span class="hljs-keyword">try</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">getTranslation</span>(text);<br>	&#125; <span class="hljs-keyword">catch</span> (err) &#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Translation query error:&#x27;</span>, err);<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>	&#125;<br>&#125;);<br><br><span class="hljs-comment">// 存储译文</span><br>ipcMain.<span class="hljs-title function_">handle</span>(<span class="hljs-string">&#x27;save-translation&#x27;</span>, <span class="hljs-keyword">async</span> (event, original, translated) =&gt; &#123;<br>	<span class="hljs-keyword">try</span> &#123;<br>		<span class="hljs-keyword">await</span> <span class="hljs-title function_">saveTranslation</span>(original, translated);<br>	&#125; <span class="hljs-keyword">catch</span> (err) &#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Translation save error:&#x27;</span>, err);<br>	&#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="加入部分翻译功能"><a href="#加入部分翻译功能" class="headerlink" title="加入部分翻译功能"></a>加入部分翻译功能</h2><h3 id="模拟翻译接口"><a href="#模拟翻译接口" class="headerlink" title="模拟翻译接口"></a>模拟翻译接口</h3><p>部分翻译功能可以使用各大翻译软件的接口，为了便于测试，编写一个本地的接口模拟翻译接口<br><code>npm install express</code><br>mockTranslateServer.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;<br><br><span class="hljs-comment">// 模拟翻译数据库</span><br><span class="hljs-keyword">const</span> mockTranslations = &#123;<br>	<span class="hljs-comment">// 常用词汇示例</span><br>	<span class="hljs-string">&#x27;hello&#x27;</span>: <span class="hljs-string">&#x27;你好&#x27;</span>,<br>	<span class="hljs-string">&#x27;world&#x27;</span>: <span class="hljs-string">&#x27;世界&#x27;</span>,<br>	<span class="hljs-string">&#x27;book&#x27;</span>: <span class="hljs-string">&#x27;书&#x27;</span>,<br>	<span class="hljs-string">&#x27;read&#x27;</span>: <span class="hljs-string">&#x27;阅读&#x27;</span>,<br>	<span class="hljs-string">&#x27;welcome&#x27;</span>: <span class="hljs-string">&#x27;欢迎&#x27;</span>,<br>	<span class="hljs-comment">// 可以根据需要添加更多</span><br>&#125;;<br><br><span class="hljs-comment">// 支持 JSON 请求体</span><br>app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">json</span>());<br><br><span class="hljs-comment">// 模拟翻译 API 端点</span><br>app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/translate&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br><span class="hljs-keyword">const</span> requestBody = req.<span class="hljs-property">body</span>;<br><span class="hljs-comment">// 验证请求格式</span><br><span class="hljs-keyword">if</span> (!<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(requestBody) || !requestBody[<span class="hljs-number">0</span>]?.<span class="hljs-property">text</span>) &#123;<br><span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">400</span>).<span class="hljs-title function_">json</span>(&#123;<br><span class="hljs-attr">error</span>: &#123;<br><span class="hljs-attr">code</span>: <span class="hljs-number">400</span>,<br><span class="hljs-attr">message</span>: <span class="hljs-string">&quot;Invalid request format&quot;</span><br>&#125;<br>&#125;);<br>&#125;<br><br><span class="hljs-keyword">const</span> textToTranslate = requestBody[<span class="hljs-number">0</span>].<span class="hljs-property">text</span>;<br><br><span class="hljs-comment">// 模拟翻译逻辑</span><br><span class="hljs-keyword">let</span> translatedText;<br><span class="hljs-keyword">if</span> (mockTranslations[textToTranslate.<span class="hljs-title function_">toLowerCase</span>()]) &#123;<br>	<span class="hljs-comment">// 如果在预设词典中找到对应翻译</span><br>	translatedText = mockTranslations[textToTranslate.<span class="hljs-title function_">toLowerCase</span>()];<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>	<span class="hljs-comment">// 简单的模拟翻译规则：在原文后添加&quot;[已翻译]&quot;</span><br>	translatedText = <span class="hljs-string">`<span class="hljs-subst">$&#123;textToTranslate&#125;</span>[已翻译]`</span>;<br>&#125;<br><br><span class="hljs-comment">// 模拟 API 响应格式</span><br><span class="hljs-keyword">const</span> response = [&#123;<br>	<span class="hljs-attr">translations</span>: [&#123;<br>		<span class="hljs-attr">text</span>: translatedText,<br>		<span class="hljs-attr">to</span>: <span class="hljs-string">&quot;zh&quot;</span><br>	&#125;]<br>&#125;];<br><br><span class="hljs-comment">// 模拟随机延迟（100-500ms），更真实地模拟网络请求</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>	res.<span class="hljs-title function_">json</span>(response);<br>	&#125;, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">400</span> + <span class="hljs-number">100</span>);<br>&#125;);<br><br><span class="hljs-comment">// 添加错误处理中间件</span><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err.<span class="hljs-property">stack</span>);<br>	res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">json</span>(&#123;<br>		<span class="hljs-attr">error</span>: &#123;<br>			<span class="hljs-attr">code</span>: <span class="hljs-number">500</span>,<br>			<span class="hljs-attr">message</span>: <span class="hljs-string">&quot;Internal server error&quot;</span><br>		&#125;<br>	&#125;);<br>&#125;);<br><br>app.<span class="hljs-title function_">listen</span>(port, <span class="hljs-function">() =&gt;</span> &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Mock translation server running at http://localhost:<span class="hljs-subst">$&#123;port&#125;</span>`</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><code>node mockTranslateServer.js</code>，开启模拟接口</p>
+<h3 id="翻译文本"><a href="#翻译文本" class="headerlink" title="翻译文本"></a>翻译文本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fetch</span> = (<span class="hljs-params">...args</span>) =&gt; <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;node-fetch&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123; <span class="hljs-keyword">default</span>: fetch &#125;</span>) =&gt;</span> <span class="hljs-title function_">fetch</span>(...args));<br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">TRANSLATOR_API_KEY</span> = <span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">TRANSLATOR_URL</span> = <span class="hljs-string">&#x27;http://localhost:3000/translate&#x27;</span>; <span class="hljs-comment">// 修改为本地服务器地址</span><br><br><span class="hljs-comment">// 翻译文本</span><br>ipcMain.<span class="hljs-title function_">handle</span>(<span class="hljs-string">&#x27;translate-text&#x27;</span>, <span class="hljs-keyword">async</span> (event, text) =&gt; &#123;<br>	<span class="hljs-comment">// 先查询数据库，看看是否已有翻译</span><br>	<span class="hljs-keyword">const</span> existingTranslation = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getTranslation</span>(text);<br>	<span class="hljs-keyword">if</span> (existingTranslation) &#123;<br>		<span class="hljs-keyword">return</span> existingTranslation;<br>	&#125;<br><br>	<span class="hljs-comment">// 如果没有，调用翻译 API</span><br>	<span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-variable constant_">TRANSLATOR_URL</span>, &#123;<br>		<span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>		<span class="hljs-attr">headers</span>: &#123;<br>		<span class="hljs-string">&#x27;Ocp-Apim-Subscription-Key&#x27;</span>: <span class="hljs-variable constant_">TRANSLATOR_API_KEY</span>,<br>		<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,<br>		&#125;,<br>		<span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>([&#123; text &#125;]),<br>	&#125;);<br>	<br>	<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>	<span class="hljs-keyword">const</span> translatedText = data[<span class="hljs-number">0</span>]?.<span class="hljs-property">translations</span>[<span class="hljs-number">0</span>]?.<span class="hljs-property">text</span> || <span class="hljs-string">&#x27;&#x27;</span>;<br>	<br>	<span class="hljs-comment">// 存入数据库</span><br>	<span class="hljs-keyword">await</span> <span class="hljs-title function_">saveTranslation</span>(text, translatedText);<br>	<br>	<span class="hljs-keyword">return</span> translatedText;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>修改App.js，点击翻译按钮后显示译文</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">translateLine</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">line</span>) =&gt; &#123;<br>	<span class="hljs-keyword">const</span> translated = <span class="hljs-keyword">await</span> ipcRenderer.<span class="hljs-title function_">invoke</span>(<span class="hljs-string">&#x27;translate-text&#x27;</span>, line);<br>	<span class="hljs-title function_">setTranslations</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =&gt;</span> (&#123; ...prev, [line]: translated &#125;));<br>&#125;;<br><br><span class="hljs-keyword">return</span> (<br>	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">padding:</span> &#x27;<span class="hljs-attr">20px</span>&#x27; &#125;&#125;&gt;</span></span><br><span class="language-xml">		<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleFileSelect&#125;</span>&gt;</span>选择文件<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">marginTop:</span> &#x27;<span class="hljs-attr">20px</span>&#x27; &#125;&#125;&gt;</span></span><br><span class="language-xml">			&#123;lines.map((line, index) =&gt; (</span><br><span class="language-xml">			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;index&#125;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">marginBottom:</span> &#x27;<span class="hljs-attr">10px</span>&#x27; &#125;&#125;&gt;</span></span><br><span class="language-xml">				<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;line&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">				<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> translateLine(line)&#125;&gt;翻译<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">color:</span> &#x27;<span class="hljs-attr">gray</span>&#x27; &#125;&#125;&gt;</span>&#123;translations[line]&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">			))&#125;</span><br><span class="language-xml">		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>);<br></code></pre></td></tr></table></figure>
+
+<p>修改为按行显示，修改App.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 常见的尊称和后缀</span><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">TITLES</span> = [<br>	<span class="hljs-string">&#x27;M(?:r|rs|s)\\.&#x27;</span>, <span class="hljs-comment">// Mr., Mrs., Ms.</span><br>	<span class="hljs-string">&#x27;D(?:r)\\.&#x27;</span>, <span class="hljs-comment">// Dr.</span><br>	<span class="hljs-string">&#x27;P(?:rof)\\.&#x27;</span>, <span class="hljs-comment">// Prof.</span><br>	<span class="hljs-string">&#x27;R(?:ev)\\.&#x27;</span>, <span class="hljs-comment">// Rev.</span><br>	<span class="hljs-string">&#x27;H(?:on)\\.&#x27;</span>, <span class="hljs-comment">// Hon.</span><br>	<span class="hljs-string">&#x27;J(?:r)\\.&#x27;</span>, <span class="hljs-comment">// Jr.</span><br>	<span class="hljs-string">&#x27;S(?:r|t)\\.&#x27;</span>, <span class="hljs-comment">// Sr., St.</span><br>	<span class="hljs-string">&#x27;U\\.S\\.&#x27;</span> <span class="hljs-comment">// U.S.</span><br>];<br><br><span class="hljs-comment">// 选择文件，将每句话分割开</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">handleFileSelect</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>	<span class="hljs-keyword">try</span> &#123;<br>		<span class="hljs-keyword">const</span> fileContent = <span class="hljs-keyword">await</span> ipcRenderer.<span class="hljs-title function_">invoke</span>(<span class="hljs-string">&#x27;select-file&#x27;</span>);<br>		<span class="hljs-keyword">if</span> (!fileContent || fileContent.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">&quot;文件内容为空&quot;</span>);<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>  <br>	<span class="hljs-keyword">const</span> text = fileContent.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27; &#x27;</span>).<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\n/g</span>, <span class="hljs-string">&#x27; &#x27;</span>); <span class="hljs-comment">// 合并所有行，并替换换行符为空格</span><br>	<span class="hljs-keyword">const</span> sentenceEndRegex = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<br>		<span class="hljs-string">`(?&lt;!<span class="hljs-subst">$&#123;TITLES.join(<span class="hljs-string">&#x27;|&#x27;</span>)&#125;</span>\\s?)`</span> + <span class="hljs-comment">// 确保不在尊称之后（允许尊称后有空格）</span><br>		<span class="hljs-string">`(?&lt;=[。！？.!?])\\s+`</span>, <span class="hljs-comment">// 句子结束标点后的空格</span><br>		<span class="hljs-string">&#x27;gi&#x27;</span> <span class="hljs-comment">// 添加 &#x27;i&#x27; 标志，大小写不敏感</span><br>	);<br><br>	<span class="hljs-comment">// 按标点符号拆分</span><br>	<span class="hljs-keyword">const</span> sentences = text<br>		.<span class="hljs-title function_">split</span>(sentenceEndRegex) <span class="hljs-comment">// 忽略常见缩写</span><br>		.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.<span class="hljs-title function_">trim</span>())<br>		.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>);<br><br>	<span class="hljs-title function_">setLines</span>(sentences);<br>	&#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;读取文件失败:&quot;</span>, error);<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="读取pdf文件"><a href="#读取pdf文件" class="headerlink" title="读取pdf文件"></a>读取pdf文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 读取 pdf 文件</span><br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fileExt === <span class="hljs-string">&#x27;.pdf&#x27;</span>) &#123;<br>	<span class="hljs-keyword">const</span> pdfjsLib = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;pdfjs-dist/build/pdf.mjs&#x27;</span>);<br>	<span class="hljs-keyword">const</span> pdf = <span class="hljs-keyword">await</span> pdfjsLib.<span class="hljs-title function_">getDocument</span>(filePath).<span class="hljs-property">promise</span>;<br>	<span class="hljs-keyword">const</span> numPages = pdf.<span class="hljs-property">numPages</span>;<br>	<span class="hljs-keyword">const</span> textContent = [];<br><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> pageNum = <span class="hljs-number">1</span>; pageNum &lt;= numPages; pageNum++) &#123;<br>		<span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> pdf.<span class="hljs-title function_">getPage</span>(pageNum);<br>		<span class="hljs-keyword">const</span> content = <span class="hljs-keyword">await</span> page.<span class="hljs-title function_">getTextContent</span>();<br>		<span class="hljs-keyword">const</span> pageText = content.<span class="hljs-property">items</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.<span class="hljs-property">str</span>).<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27; &#x27;</span>);<br>		textContent.<span class="hljs-title function_">push</span>(pageText);<br>	&#125;<br><br>	content = textContent;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="读取epub文件"><a href="#读取epub文件" class="headerlink" title="读取epub文件"></a>读取epub文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fileExt === <span class="hljs-string">&#x27;.epub&#x27;</span>) &#123;<br>	<span class="hljs-keyword">const</span> <span class="hljs-title class_">EPub</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;epub&#x27;</span>);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>		<span class="hljs-keyword">const</span> epub = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EPub</span>(filePath, <span class="hljs-string">&#x27;/images/&#x27;</span>, <span class="hljs-string">&#x27;/chapters/&#x27;</span>);<br><br>		epub.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;end&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;<br>			<span class="hljs-keyword">try</span> &#123;<br>			<span class="hljs-comment">// 获取所有章节内容</span><br>			<span class="hljs-keyword">const</span> chapters = [];<br><br>			<span class="hljs-comment">// 使用 Promise.all 和 map 来并行处理所有章节</span><br>			<span class="hljs-keyword">const</span> chapterPromises = epub.<span class="hljs-property">flow</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">chapter</span> =&gt;</span> &#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolveChapter, rejectChapter</span>) =&gt;</span> &#123;<br>					epub.<span class="hljs-title function_">getChapter</span>(chapter.<span class="hljs-property">id</span>, <span class="hljs-function">(<span class="hljs-params">error, text</span>) =&gt;</span> &#123;<br>						<span class="hljs-keyword">if</span> (error) &#123;<br>							<span class="hljs-title function_">rejectChapter</span>(error);<br>						&#125; <span class="hljs-keyword">else</span> &#123;<br>							<span class="hljs-comment">// 将 HTML 转换为纯文本</span><br>							<span class="hljs-keyword">const</span> textContent = text.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="hljs-string">&#x27;&#x27;</span>)<br>							.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\n\s*\n/g</span>, <span class="hljs-string">&#x27;\n&#x27;</span>)<br>							.<span class="hljs-title function_">trim</span>();<br>							<span class="hljs-title function_">resolveChapter</span>(textContent);<br>						&#125;<br>					&#125;);<br>				&#125;);<br>			&#125;);<br><br>			<span class="hljs-keyword">const</span> chapterContents = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(chapterPromises);<br>			<span class="hljs-title function_">resolve</span>(chapterContents);<br>			&#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>				<span class="hljs-title function_">reject</span>(error);<br>			&#125;<br>		&#125;);<br><br>		epub.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>			<span class="hljs-title function_">reject</span>(error);<br>		&#125;);<br><br>		epub.<span class="hljs-title function_">parse</span>();<br>	&#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="电子书阅读器"><a href="#电子书阅读器" class="headerlink" title="电子书阅读器"></a>电子书阅读器</h1><p>先做阅读器，然后再加上句子拆分和翻译功能。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Electron/" class="print-no-link">#Electron</a>
+      
+        <a href="/tags/React/" class="print-no-link">#React</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
